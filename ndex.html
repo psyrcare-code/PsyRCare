@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PsyRCare</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    #time {
+      font-size: 80px;
+      letter-spacing: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="time">22:21</div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("time").innerText = "22:22";
+    }, 3000);
+  </script>
+</body>
+</html>
