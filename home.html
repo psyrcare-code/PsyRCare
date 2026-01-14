@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PsyRCare</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 40px;
+    }
+
+    .btn {
+      border: 1px solid white;
+      padding: 15px 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>PsyRCare</h1>
+
+  <div class="buttons">
+    <div class="btn">About the platform</div>
+    <div class="btn" onclick="window.location.href='APP_SHEET_LINK_HERE'">
+      Register
+    </div>
+  </div>
+
+</body>
+</html>
