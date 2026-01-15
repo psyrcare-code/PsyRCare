@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>About PsyRCare</title>
+<title>Register | PsyRCare</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
@@ -19,45 +19,62 @@ body {
 }
 
 .container {
-  max-width: 800px;
-  padding: 50px 40px;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  font-size: 48px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
-.section {
-  margin-bottom: 40px;
-}
-
-.section h2 {
-  font-size: 26px;
-  margin-bottom: 12px;
-}
-
-.section p {
+p {
   font-family: 'Playfair Display', serif;
-  font-size: 19px;
-  line-height: 1.7;
+  font-size: 17px;
   opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: white;
+  color: black;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
 }
 
 .back {
-  display: inline-block;
   margin-top: 20px;
-  border: 1px solid white;
-  padding: 12px 26px;
-  cursor: pointer;
-  text-decoration: none;
+  display: inline-block;
   color: white;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 .back:hover {
-  background: white;
-  color: black;
+  opacity: 1;
 }
 </style>
 </head>
@@ -65,46 +82,20 @@ h1 {
 <body>
 
 <div class="container">
-
-<h1>About PsyRCare</h1>
-
-<div class="section">
-  <h2>What is PsyRCare?</h2>
+  <h1>Register</h1>
   <p>
-    PsyRCare is a confidential listening space created for people who feel
-    emotionally overwhelmed, isolated, or mentally exhausted.
-    It is not a clinic, not a diagnosis, and not a place of judgment —
-    but a human space where your voice matters.
+    This is a first step.  
+    You will be contacted to schedule your session.
   </p>
-</div>
 
-<div class="section">
-  <h2>How does it work?</h2>
-  <p>
-    You choose a session duration that fits your needs.
-    After registration, you will receive a proposed time for your session.
-    Once we agree on the schedule, the session takes place in a private
-    and respectful environment.
-  </p>
-</div>
+  <form>
+    <input type="text" placeholder="Full name" required>
+    <input type="email" placeholder="Email address" required>
+    <input type="tel" placeholder="Phone number (optional)">
+    <button type="submit">Continue</button>
+  </form>
 
-<div class="section">
-  <h2>About the founder</h2>
-  <p>
-    PsyRCare was founded by <strong>Roumayssae Touihri</strong>,
-    driven by a deep belief that emotional pain deserves to
-
-<div class="section">
-  <h2>Why this platform exists</h2>
-  <p>
-    Many people suffer quietly because they don’t feel safe speaking out.
-    PsyRCare exists to remind you that you are not weak for needing to talk,
-    and that being heard can change more than you think.
-  </p>
-</div>
-
-<a href="home.html" class="back">← Back</a>
-
+  <a href="home.html" class="back">← Back</a>
 </div>
 
 </body>
