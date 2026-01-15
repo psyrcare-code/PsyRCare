@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>PsyRCare</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -14,64 +18,78 @@
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
-      cursor: pointer;
+      text-align: center;
     }
 
-    #time {
-      font-size: 90px;
-      letter-spacing: 6px;
-      margin-bottom: 40px;
+    h1 {
+      font-size: 64px;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
     }
 
-    #arrow {
-      font-size: 40px;
+    .slogan {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      opacity: 0.85;
+      min-height: 32px;
+      margin-bottom: 50px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 40px;
       opacity: 0;
-      transition: opacity 1s;
+      transition: opacity 1.2s ease;
     }
 
-    #arrow.show {
+    .buttons.show {
       opacity: 1;
+    }
+
+    .btn {
+      border: 1px solid white;
+      padding: 15px 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
     }
   </style>
 </head>
+
 <body>
 
-  <div id="time">22:21</div>
-  <div id="arrow">↓</div>
+  <h1>PsyRCare</h1>
+  <div class="slogan" id="slogan"></div>
 
-  <audio id="flatline" src="flatline.mp3"></audio>
-  <audio id="heartbeat" src="heartbeat.mp3" loop></audio>
+  <div class="buttons" id="buttons">
+    <div class="btn">About the platform</div>
+    <div class="btn" onclick="window.location.href='APP_SHEET_LINK_HERE'">
+      Register
+    </div>
+  </div>
 
   <script>
-    let started = false;
+    const text = "You don’t have to carry this alone.";
+    const sloganElement = document.getElementById("slogan");
+    const buttons = document.getElementById("buttons");
+    let index = 0;
 
-    document.body.addEventListener("click", () => {
-      if (started) return;
-      started = true;
+    function typeEffect() {
+      if (index < text.length) {
+        sloganElement.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 60);
+      } else {
+        buttons.classList.add("show");
+      }
+    }
 
-      const flatline = document.getElementById("flatline");
-      const heartbeat = document.getElementById("heartbeat");
-      const time = document.getElementById("time");
-      const arrow = document.getElementById("arrow");
-
-      flatline.play();
-
-      setTimeout(() => {
-        time.innerText = "22:22";
-        flatline.pause();
-        heartbeat.play();
-        arrow.classList.add("show");
-      }, 3000);
-
-      arrow.addEventListener("click", (e) => {
-        e.stopPropagation();
-        heartbeat.pause();
-        document.body.style.opacity = 0;
-        setTimeout(() => {
-          window.location.href = "home.html";
-        }, 1000);
-      });
-    });
+    window.onload = typeEffect;
   </script>
 
 </body>
