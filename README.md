@@ -11,11 +11,11 @@ body {
   margin: 0;
   background: black;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Playfair Display', serif;
   text-align: center;
 }
 
-/* شاشة البداية النفسية */
+/* شاشة الترحيب */
 #intro-overlay {
   position: fixed;
   top: 0;
@@ -23,28 +23,28 @@ body {
   width: 100%;
   height: 100%;
   background: black;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-size: 28px;
   z-index: 9999;
-  transition: opacity 1s ease;
 }
 
 #intro-text {
-  max-width: 600px;
-  line-height: 1.6;
-  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  max-width: 650px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
+/* العنوان */
+h1 {
+  margin-top: 50px;
+  font-size: 34px;
+  font-weight: normal;
 }
 
 /* العروض */
-h1 {
-  margin-top: 40px;
-  font-size: 36px;
-}
-
 .offers-container {
   display: flex;
   flex-wrap: wrap;
@@ -54,131 +54,136 @@ h1 {
 }
 
 .offer-card {
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 20px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 22px;
   margin: 15px;
   width: 260px;
   transition: 0.3s;
 }
 
 .offer-card:hover {
-  transform: scale(1.05);
-  border-color: #fff;
+  transform: scale(1.03);
+  border-color: #666;
 }
 
 .offer-title {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .offer-desc {
   font-size: 14px;
-  color: #ccc;
-  margin-bottom: 15px;
+  color: #bbb;
+  margin-bottom: 18px;
 }
 
 .offer-price {
-  font-size: 22px;
-  margin-bottom: 15px;
+  font-size: 20px;
+  margin-bottom: 18px;
 }
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #fff;
-  color: #fff;
+  padding: 10px 22px;
+  border: 1px solid #777;
+  color: white;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: 0.3s;
-  cursor: pointer;
+  font-size: 14px;
 }
 
 .btn:hover {
-  background: #fff;
-  color: #000;
+  background: white;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<!-- شاشة البداية النفسية -->
+<!-- شاشة الترحيب -->
 <div id="intro-overlay">
   <div id="intro-text"></div>
 </div>
 
-<h1 id="welcome-title">Our Sessions</h1>
+<h1>Our Sessions</h1>
 
 <div class="offers-container">
 
   <div class="offer-card">
     <div class="offer-title">Free Intro Session</div>
-    <div class="offer-desc">A short free session for new users to ask questions.</div>
+    <div class="offer-desc">A gentle space to meet and ask your first questions.</div>
     <div class="offer-price">Free</div>
-    <a href="order.html" class="btn">Start</a>
+    <a href="order.html" class="btn">Begin</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">30-Minute Session</div>
-    <div class="offer-desc">A focused conversation to explore your concerns.</div>
+    <div class="offer-desc">A calm conversation to understand what you feel.</div>
     <div class="offer-price">$5</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">1-Hour Session</div>
-    <div class="offer-desc">A deeper session to understand and clarify your situation.</div>
+    <div class="offer-desc">A deeper moment to explore your thoughts safely.</div>
     <div class="offer-price">$10</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">1.5-Hour Deep Session</div>
-    <div class="offer-desc">A structured 90-minute session as part of a progressive support plan.</div>
+    <div class="offer-desc">A longer journey into understanding and clarity.</div>
     <div class="offer-price">$15</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
 </div>
 
 <script>
-// تجربة نفسية + صوت
+// كتابة النص ببطء + صوت هادئ
 window.onload = function() {
-  const name = localStorage.getItem("userName") || "someone";
+  const name = localStorage.getItem("userName") || "dear friend";
+  const textElement = document.getElementById("intro-text");
   const overlay = document.getElementById("intro-overlay");
-  const textBox = document.getElementById("intro-text");
 
-  const messages = [
-    `${name}...`,
-    "We’ve been waiting for you.",
-    "Not everyone finds this place.",
-    "But you did."
-  ];
+  const message = `Welcome, ${name}.
+You are safe here.
+Take your time.
+This space was created for you.`;
 
   let index = 0;
 
-  function showMessage() {
-    if (index < messages.length) {
-      textBox.innerHTML = messages[index];
+  function typeText() {
+    if (index < message.length) {
+      textElement.innerHTML += message.charAt(index);
       index++;
-      setTimeout(showMessage, 1600);
+      setTimeout(typeText, 60); // سرعة الكتابة (كلما زادت القيمة صار أبطأ)
     } else {
-      overlay.style.opacity = "0";
-      setTimeout(() => overlay.style.display = "none", 1000);
+      setTimeout(() => {
+        overlay.style.opacity = "0";
+        overlay.style.transition = "1.5s";
+        setTimeout(() => overlay.style.display = "none", 1500);
+      }, 1500);
     }
   }
 
-  showMessage();
+  typeText();
 
-  // صوت ترحيبي
-  const voiceText = `Welcome ${name}. This is a safe space for you.`;
+  // صوت هادئ وبطيء
+  const voiceText = `Welcome ${name}. You are safe here. Take your time.`;
   const speech = new SpeechSynthesisUtterance(voiceText);
   speech.lang = "en-US";
-  speech.rate = 0.85;
-  speech.pitch = 0.9;
-  window.speechSynthesis.speak(speech);
+  speech.rate = 0.7;   // أبطأ = أكثر هدوءًا
+  speech.pitch = 0.8;  // نبرة ناعمة
+  speech.volume = 0.7; // صوت غير قوي
+
+  setTimeout(() => {
+    window.speechSynthesis.speak(speech);
+  }, 800);
 };
 </script>
 
