@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<title>PsyRCare - Register</title>
 
 <style>
 body {
@@ -13,71 +11,85 @@ body {
   color: white;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+.container {
   text-align: center;
+  width: 320px;
 }
 
 h1 {
-  font-size: 64px;
   margin-bottom: 10px;
+  font-size: 36px;
 }
 
-#slogan {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  min-height: 30px;
-  margin-bottom: 40px;
+p {
+  color: #ccc;
+  margin-bottom: 30px;
+  font-size: 14px;
 }
 
-.buttons {
-  display: none;
-  gap: 30px;
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: black;
+  border: 1px solid white;
+  color: white;
+  outline: none;
+}
+
+input::placeholder {
+  color: #777;
 }
 
 .btn {
+  margin-top: 20px;
   border: 1px solid white;
-  padding: 14px 28px;
+  padding: 12px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<h1>PsyRCare</h1>
-<div id="slogan"></div>
-<div class="buttons" id="buttons">
-  <div class="btn" onclick="window.location.href='about.html'">
-    About the platform
-  </div> 
+<div class="container">
+  <h1>Welcome</h1>
+  <p>Before we begin, tell us a little about you.</p>
 
-  <div class="btn" onclick="window.location.href='register.html'">
-    Register
-  </div>
+  <input type="text" id="name" placeholder="Your name">
+  <input type="email" id="email" placeholder="Your email">
 
-  <div class="btn" onclick="window.location.href='offers.html'">
-    Offers
-  </div>
+  <div class="btn" onclick="continueToOffers()">Continue</div>
 </div>
+
 <script>
-const text = "You don’t have to carry this alone.";
-let i = 0;
-const slogan = document.getElementById("slogan");
-const buttons = document.getElementById("buttons");
+function continueToOffers() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
 
-function typeText() {
-  if (i < text.length) {
-    slogan.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 70);
-  } else {
-    buttons.style.display = "flex";
+  if (name === "" || email === "") {
+    alert("Please fill in your name and email.");
+    return;
   }
-}
 
-typeText();
+  // حفظ البيانات مؤقتًا (اختياري)
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userEmail", email);
+
+  // الانتقال إلى صفحة العروض
+  window.location.href = "offers.html";
+}
 </script>
 
 </body>
