@@ -15,7 +15,7 @@ body {
   text-align: center;
 }
 
-/* شاشة الترحيب */
+/* شاشة الترحيب العلاجية */
 #intro-overlay {
   position: fixed;
   top: 0;
@@ -30,21 +30,20 @@ body {
 }
 
 #intro-text {
-  font-size: 26px;
-  max-width: 650px;
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-  opacity: 0.95;
+  font-size: 24px;
+  max-width: 700px;
+  line-height: 1.9;
+  letter-spacing: 0.6px;
+  text-align: center;
 }
 
-/* العنوان */
+/* العروض */
 h1 {
   margin-top: 50px;
   font-size: 34px;
   font-weight: normal;
 }
 
-/* العروض */
 .offers-container {
   display: flex;
   flex-wrap: wrap;
@@ -54,7 +53,7 @@ h1 {
 }
 
 .offer-card {
-  background: #0f0f0f;
+  background: #0e0e0e;
   border: 1px solid #222;
   border-radius: 14px;
   padding: 22px;
@@ -64,8 +63,8 @@ h1 {
 }
 
 .offer-card:hover {
-  transform: scale(1.03);
-  border-color: #666;
+  transform: scale(1.02);
+  border-color: #555;
 }
 
 .offer-title {
@@ -104,7 +103,6 @@ h1 {
 
 <body>
 
-<!-- شاشة الترحيب -->
 <div id="intro-overlay">
   <div id="intro-text"></div>
 </div>
@@ -115,21 +113,21 @@ h1 {
 
   <div class="offer-card">
     <div class="offer-title">Free Intro Session</div>
-    <div class="offer-desc">A gentle space to meet and ask your first questions.</div>
+    <div class="offer-desc">A gentle first meeting in a safe space.</div>
     <div class="offer-price">Free</div>
     <a href="order.html" class="btn">Begin</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">30-Minute Session</div>
-    <div class="offer-desc">A calm conversation to understand what you feel.</div>
+    <div class="offer-desc">A calm conversation to understand your feelings.</div>
     <div class="offer-price">$5</div>
     <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">1-Hour Session</div>
-    <div class="offer-desc">A deeper moment to explore your thoughts safely.</div>
+    <div class="offer-desc">A deeper therapeutic dialogue.</div>
     <div class="offer-price">$10</div>
     <a href="order.html" class="btn">Continue</a>
   </div>
@@ -144,46 +142,57 @@ h1 {
 </div>
 
 <script>
-// كتابة النص ببطء + صوت هادئ
 window.onload = function() {
-  const name = localStorage.getItem("userName") || "dear friend";
+  const name = localStorage.getItem("userName") || "friend";
   const textElement = document.getElementById("intro-text");
   const overlay = document.getElementById("intro-overlay");
 
-  const message = `Welcome, ${name}.
-You are safe here.
-Take your time.
-This space was created for you.`;
+  const sentences = [
+    `Welcome, ${name}.`,
+    "You are in a safe place.",
+    "There is no need to hurry.",
+    "Take a breath.",
+    "We are here with you."
+  ];
 
-  let index = 0;
+  let sentenceIndex = 0;
+  let charIndex = 0;
 
-  function typeText() {
-    if (index < message.length) {
-      textElement.innerHTML += message.charAt(index);
-      index++;
-      setTimeout(typeText, 60); // سرعة الكتابة (كلما زادت القيمة صار أبطأ)
-    } else {
+  function speak(text) {
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 0.6;   // بطيء جدًا ومريح
+    speech.pitch = 0.7;  // نبرة هادئة
+    speech.volume = 0.6; // صوت منخفض
+    window.speechSynthesis.speak(speech);
+  }
+
+  function typeSentence() {
+    if (sentenceIndex >= sentences.length) {
       setTimeout(() => {
         overlay.style.opacity = "0";
-        overlay.style.transition = "1.5s";
-        setTimeout(() => overlay.style.display = "none", 1500);
+        overlay.style.transition = "2s";
+        setTimeout(() => overlay.style.display = "none", 2000);
       }, 1500);
+      return;
+    }
+
+    const currentSentence = sentences[sentenceIndex];
+
+    if (charIndex < currentSentence.length) {
+      textElement.innerHTML += currentSentence.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeSentence, 70); // سرعة الكتابة (أبطأ = أكثر علاجية)
+    } else {
+      speak(currentSentence); // قراءة الجملة بصوت هادئ
+      textElement.innerHTML += "<br><br>";
+      sentenceIndex++;
+      charIndex = 0;
+      setTimeout(typeSentence, 1800); // انتظار قبل الجملة التالية
     }
   }
 
-  typeText();
-
-  // صوت هادئ وبطيء
-  const voiceText = `Welcome ${name}. You are safe here. Take your time.`;
-  const speech = new SpeechSynthesisUtterance(voiceText);
-  speech.lang = "en-US";
-  speech.rate = 0.7;   // أبطأ = أكثر هدوءًا
-  speech.pitch = 0.8;  // نبرة ناعمة
-  speech.volume = 0.7; // صوت غير قوي
-
-  setTimeout(() => {
-    window.speechSynthesis.speak(speech);
-  }, 800);
+  typeSentence();
 };
 </script>
 
