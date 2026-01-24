@@ -1,113 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PsyRCare - Offers</title>
-  <style>
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
+<meta charset="UTF-8">
+<title>PsyRCare - Offers</title>
 
-    h1 {
-      margin-top: 40px;
-      font-size: 36px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
-    .offers-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 40px auto;
-      max-width: 1000px;
-    }
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
 
-    .offer-card {
-      background: #111;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 15px;
-      width: 260px;
-      transition: 0.3s;
-    }
+/* شاشة البداية النفسية */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 28px;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
 
-    .offer-card:hover {
-      transform: scale(1.05);
-      border-color: #fff;
-    }
+#intro-text {
+  max-width: 600px;
+  line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+}
 
-    .offer-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
+/* العروض */
+h1 {
+  margin-top: 40px;
+  font-size: 36px;
+}
 
-    .offer-desc {
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 15px;
-    }
+.offers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px auto;
+  max-width: 1000px;
+}
 
-    .offer-price {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
+.offer-card {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px;
+  width: 260px;
+  transition: 0.3s;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      border: 1px solid #fff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
+.offer-card:hover {
+  transform: scale(1.05);
+  border-color: #fff;
+}
 
-    .btn:hover {
-      background: #fff;
-      color: #000;
-    }
-  </style>
+.offer-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.offer-desc {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.offer-price {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #000;
+}
+</style>
 </head>
+
 <body>
 
-  <h1>Our Sessions</h1>
+<!-- شاشة البداية النفسية -->
+<div id="intro-overlay">
+  <div id="intro-text"></div>
+</div>
 
-  <div class="offers-container">
+<h1 id="welcome-title">Our Sessions</h1>
 
-    <div class="offer-card">
-      <div class="offer-title">Free Intro Session</div>
-      <div class="offer-desc">A short free session for new users to ask questions.</div>
-      <div class="offer-price">Free</div>
-      <a href="register.html" class="btn">Start</a>
-    </div>
+<div class="offers-container">
 
-    <div class="offer-card">
-      <div class="offer-title">30-Minute Session</div>
-      <div class="offer-desc">A focused conversation to explore your concerns.</div>
-      <div class="offer-price">$5</div>
-      <a href="register.html" class="btn">Book</a>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">1-Hour Session</div>
-      <div class="offer-desc">A deeper session to understand and clarify your situation.</div>
-      <div class="offer-price">$10</div>
-      <a href="register.html" class="btn">Book</a>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">1.5-Hour Deep Session</div>
-      <div class="offer-desc">A structured 90-minute session as part of a progressive support plan.</div>
-      <div class="offer-price">$15</div>
-      <a href="register.html" class="btn">Book</a>
-    </div>
-
+  <div class="offer-card">
+    <div class="offer-title">Free Intro Session</div>
+    <div class="offer-desc">A short free session for new users to ask questions.</div>
+    <div class="offer-price">Free</div>
+    <a href="order.html" class="btn">Start</a>
   </div>
+
+  <div class="offer-card">
+    <div class="offer-title">30-Minute Session</div>
+    <div class="offer-desc">A focused conversation to explore your concerns.</div>
+    <div class="offer-price">$5</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1-Hour Session</div>
+    <div class="offer-desc">A deeper session to understand and clarify your situation.</div>
+    <div class="offer-price">$10</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1.5-Hour Deep Session</div>
+    <div class="offer-desc">A structured 90-minute session as part of a progressive support plan.</div>
+    <div class="offer-price">$15</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+</div>
+
+<script>
+// تجربة نفسية + صوت
+window.onload = function() {
+  const name = localStorage.getItem("userName") || "someone";
+  const overlay = document.getElementById("intro-overlay");
+  const textBox = document.getElementById("intro-text");
+
+  const messages = [
+    `${name}...`,
+    "We’ve been waiting for you.",
+    "Not everyone finds this place.",
+    "But you did."
+  ];
+
+  let index = 0;
+
+  function showMessage() {
+    if (index < messages.length) {
+      textBox.innerHTML = messages[index];
+      index++;
+      setTimeout(showMessage, 1600);
+    } else {
+      overlay.style.opacity = "0";
+      setTimeout(() => overlay.style.display = "none", 1000);
+    }
+  }
+
+  showMessage();
+
+  // صوت ترحيبي
+  const voiceText = `Welcome ${name}. This is a safe space for you.`;
+  const speech = new SpeechSynthesisUtterance(voiceText);
+  speech.lang = "en-US";
+  speech.rate = 0.85;
+  speech.pitch = 0.9;
+  window.speechSynthesis.speak(speech);
+};
+</script>
 
 </body>
 </html>
