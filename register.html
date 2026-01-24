@@ -2,79 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Register | PsyRCare</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<title>PsyRCare - Register</title>
 
 <style>
 body {
   margin: 0;
   background: black;
   color: white;
-  font-family: Arial, sans-serif;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-  width: 100%;
-  max-width: 420px;
-  padding: 40px;
   text-align: center;
+  width: 320px;
 }
 
 h1 {
   margin-bottom: 10px;
+  font-size: 36px;
 }
 
 p {
-  font-family: 'Playfair Display', serif;
-  font-size: 17px;
-  opacity: 0.9;
+  color: #ccc;
   margin-bottom: 30px;
+  font-size: 14px;
 }
 
 input {
   width: 100%;
-  padding: 14px;
-  margin-bottom: 16px;
-  background: transparent;
+  padding: 12px;
+  margin: 10px 0;
+  background: black;
   border: 1px solid white;
   color: white;
-  font-size: 15px;
+  outline: none;
 }
 
 input::placeholder {
-  color: #aaa;
+  color: #777;
 }
 
-button {
-  width: 100%;
-  padding: 14px;
+.btn {
+  margin-top: 20px;
+  border: 1px solid white;
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
   background: white;
   color: black;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-
-.back {
-  margin-top: 20px;
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-.back:hover {
-  opacity: 1;
 }
 </style>
 </head>
@@ -82,21 +64,33 @@ button:hover {
 <body>
 
 <div class="container">
-  <h1>Register</h1>
-  <p>
-    This is a first step.  
-    You will be contacted to schedule your session.
-  </p>
+  <h1>Welcome</h1>
+  <p>Before we begin, tell us a little about you.</p>
 
-  <form>
-    <input type="text" placeholder="Full name" required>
-    <input type="email" placeholder="Email address" required>
-    <input type="tel" placeholder="Phone number (optional)">
-    <button type="submit">Continue</button>
-  </form>
+  <input type="text" id="name" placeholder="Your name">
+  <input type="email" id="email" placeholder="Your email">
 
-  <a href="home.html" class="back">← Back</a>
+  <div class="btn" onclick="continueToOffers()">Continue</div>
 </div>
+
+<script>
+function continueToOffers() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  if (name === "" || email === "") {
+    alert("Please fill in your name and email.");
+    return;
+  }
+
+  // حفظ البيانات مؤقتًا (اختياري)
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userEmail", email);
+
+  // الانتقال إلى صفحة العروض
+  window.location.href = "offers.html";
+}
+</script>
 
 </body>
 </html>
