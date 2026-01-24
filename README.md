@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare</title>
+<title>PsyRCare - Offers</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
@@ -11,69 +11,175 @@ body {
   margin: 0;
   background: black;
   color: white;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 
+/* شاشة البداية النفسية */
+#intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 28px;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+#intro-text {
+  max-width: 600px;
+  line-height: 1.6;
+  font-family: 'Playfair Display', serif;
+}
+
+/* العروض */
 h1 {
-  font-size: 64px;
+  margin-top: 40px;
+  font-size: 36px;
+}
+
+.offers-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.offer-card {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px;
+  width: 260px;
+  transition: 0.3s;
+}
+
+.offer-card:hover {
+  transform: scale(1.05);
+  border-color: #fff;
+}
+
+.offer-title {
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
-#slogan {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  min-height: 30px;
-  margin-bottom: 40px;
+.offer-desc {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
 }
 
-.buttons {
-  display: none;
-  gap: 30px;
+.offer-price {
+  font-size: 22px;
+  margin-bottom: 15px;
 }
 
 .btn {
-  border: 1px solid white;
-  padding: 14px 28px;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
   cursor: pointer;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #000;
 }
 </style>
 </head>
 
 <body>
 
-<h1>PsyRCare</h1>
-<div id="slogan"></div>
-<div class="buttons" id="buttons">
-  <div class="btn" onclick="window.location.href='about.html'">
-    About the platform
-  </div> 
-
-  <div class="btn" onclick="window.location.href='register.html'">
-    Register
-  </div>
+<!-- شاشة البداية النفسية -->
+<div id="intro-overlay">
+  <div id="intro-text"></div>
 </div>
+
+<h1 id="welcome-title">Our Sessions</h1>
+
+<div class="offers-container">
+
+  <div class="offer-card">
+    <div class="offer-title">Free Intro Session</div>
+    <div class="offer-desc">A short free session for new users to ask questions.</div>
+    <div class="offer-price">Free</div>
+    <a href="order.html" class="btn">Start</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">30-Minute Session</div>
+    <div class="offer-desc">A focused conversation to explore your concerns.</div>
+    <div class="offer-price">$5</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1-Hour Session</div>
+    <div class="offer-desc">A deeper session to understand and clarify your situation.</div>
+    <div class="offer-price">$10</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1.5-Hour Deep Session</div>
+    <div class="offer-desc">A structured 90-minute session as part of a progressive support plan.</div>
+    <div class="offer-price">$15</div>
+    <a href="order.html" class="btn">Book</a>
+  </div>
+
+</div>
+
 <script>
-const text = "You don’t have to carry this alone.";
-let i = 0;
-const slogan = document.getElementById("slogan");
-const buttons = document.getElementById("buttons");
+// تجربة نفسية + صوت
+window.onload = function() {
+  const name = localStorage.getItem("userName") || "someone";
+  const overlay = document.getElementById("intro-overlay");
+  const textBox = document.getElementById("intro-text");
 
-function typeText() {
-  if (i < text.length) {
-    slogan.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 70);
-  } else {
-    buttons.style.display = "flex";
+  const messages = [
+    `${name}...`,
+    "We’ve been waiting for you.",
+    "Not everyone finds this place.",
+    "But you did."
+  ];
+
+  let index = 0;
+
+  function showMessage() {
+    if (index < messages.length) {
+      textBox.innerHTML = messages[index];
+      index++;
+      setTimeout(showMessage, 1600);
+    } else {
+      overlay.style.opacity = "0";
+      setTimeout(() => overlay.style.display = "none", 1000);
+    }
   }
-}
 
-typeText();
+  showMessage();
+
+  // صوت ترحيبي
+  const voiceText = `Welcome ${name}. This is a safe space for you.`;
+  const speech = new SpeechSynthesisUtterance(voiceText);
+  speech.lang = "en-US";
+  speech.rate = 0.85;
+  speech.pitch = 0.9;
+  window.speechSynthesis.speak(speech);
+};
 </script>
 
 </body>
