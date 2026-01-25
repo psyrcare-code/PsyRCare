@@ -29,7 +29,7 @@ h1 {
   padding: 20px 30px;
   border-radius: 14px;
   margin-bottom: 25px;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 .session-name {
@@ -46,16 +46,16 @@ h1 {
   font-size: 15px;
   opacity: 0.85;
   margin-bottom: 25px;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .whatsapp-btn {
-  padding: 12px 28px;
+  padding: 12px 30px;
   border: 1px solid white;
   background: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 22px;
+  border-radius: 24px;
   font-size: 15px;
   transition: 0.3s;
 }
@@ -81,6 +81,8 @@ h1 {
   please contact us on WhatsApp:
   <br><br>
   <strong>+212 722288965</strong>
+  <br><br>
+  You will receive a response on WhatsApp Business within 24 hours.
 </div>
 
 <button class="whatsapp-btn" onclick="openWhatsApp()">
@@ -105,4 +107,4 @@ function openWhatsApp() {
 </body>
 </html>
 
-
+ 
