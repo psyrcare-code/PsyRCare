@@ -117,28 +117,28 @@ h1 {
     <div class="offer-title">Free Intro Session</div>
     <div class="offer-desc">A gentle first meeting in a safe space.</div>
     <div class="offer-price">Free</div>
-    <a href="order.html" class="btn">Begin</a>
+    <a href="order.html" class="btn">Book</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">30-Minute Session</div>
     <div class="offer-desc">A calm conversation to understand your feelings.</div>
     <div class="offer-price">$5</div>
-    <a href="order.html" class="btn">Continue</a>
+    <a href="order.html" class="btn">Book</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">1-Hour Session</div>
     <div class="offer-desc">A deeper therapeutic dialogue.</div>
     <div class="offer-price">$10</div>
-    <a href="order.html" class="btn">Continue</a>
+    <a href="order.html" class="btn">Book</a>
   </div>
 
   <div class="offer-card">
     <div class="offer-title">1.5-Hour Deep Session</div>
     <div class="offer-desc">A longer journey into understanding and clarity.</div>
     <div class="offer-price">$15</div>
-    <a href="order.html" class="btn">Continue</a>
+    <a href="order.html" class="btn">Book</a>
   </div>
 
 </div>
@@ -179,4 +179,3 @@ You are welcome in PsyRCare.`;
 
 </body>
 </html>
-
