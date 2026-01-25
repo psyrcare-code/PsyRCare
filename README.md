@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Offers</title>
+<title>PsyRCare - Booking</title>
 
 <style>
 body {
@@ -12,69 +12,55 @@ body {
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  font-weight: normal;
+  font-size: 34px;
+  margin-bottom: 20px;
 }
 
-.subtitle {
-  font-size: 16px;
-  opacity: 0.7;
-  margin-bottom: 35px;
-}
-
-.offers-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1000px;
-}
-
-.offer-card {
+.info-box {
   border: 1px solid white;
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 14px;
-  text-align: center;
-  transition: 0.3s;
+  margin-bottom: 25px;
+  max-width: 400px;
 }
 
-.offer-card:hover {
-  transform: scale(1.03);
-}
-
-.offer-title {
+.session-name {
   font-size: 18px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.offer-desc {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-bottom: 14px;
+.session-price {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.offer-price {
-  font-size: 18px;
-  margin-bottom: 14px;
+.message {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 25px;
+  line-height: 1.6;
 }
 
-.book-btn {
-  padding: 9px 24px;
+.whatsapp-btn {
+  padding: 12px 28px;
+  border: 1px solid white;
   background: transparent;
   color: white;
-  border: 1px solid white;
   cursor: pointer;
+  border-radius: 22px;
+  font-size: 15px;
   transition: 0.3s;
-  border-radius: 20px;
 }
 
-.book-btn:hover {
+.whatsapp-btn:hover {
   background: white;
   color: black;
 }
@@ -83,133 +69,40 @@ h1 {
 
 <body>
 
-<h1>Find the session that resonates with you</h1>
-<div class="subtitle">Each space is designed for calm conversation and personal clarity.</div>
+<h1>Your Session Details</h1>
 
-<div class="offers-container">
-
-  <!-- Free -->
-  <div class="offer-card">
-    <div class="offer-title">Free Discovery Session</div>
-    <div class="offer-desc">
-      A short conversation to explore the platform and ask questions.
-    </div>
-    <div class="offer-price">Free</div>
-    <button class="book-btn" onclick="bookOffer('Free Discovery Session', 0)">Book</button>
-  </div>
-
-  <!-- 30 min -->
-  <div class="offer-card">
-    <div class="offer-title">30 Minutes Session</div>
-    <div class="offer-desc">
-      A gentle introduction for reflection and open conversation.
-    </div>
-    <div class="offer-price">$5</div>
-    <button class="book-btn" onclick="bookOffer('30 Minutes Session', 5)">Book</button>
-  </div>
-
-  <!-- 1 hour -->
-  <div class="offer-card">
-    <div class="offer-title">1 Hour Session</div>
-    <div class="offer-desc">
-      A focused session for meaningful dialogue and personal insight.
-    </div>
-    <div class="offer-price">$10</div>
-    <button class="book-btn" onclick="bookOffer('1 Hour Session', 10)">Book</button>
-  </div>
-
-  <!-- 1.5 hours -->
-  <div class="offer-card">
-    <div class="offer-title">1.5 Hours Session</div>
-    <div class="offer-desc">
-      Extended time for deeper exploration and thoughtful conversation.
-    </div>
-    <div class="offer-price">$15</div>
-    <button class="book-btn" onclick="bookOffer('1.5 Hours Session', 15)">Book</button>
-  </div>
-
-  <!-- 2 hours -->
-  <div class="offer-card">
-    <div class="offer-title">2 Hours Session</div>
-    <div class="offer-desc">
-      A longer space for clarity, reflection, and emotional awareness.
-    </div>
-    <div class="offer-price">$20</div>
-    <button class="book-btn" onclick="bookOffer('2 Hours Session', 20)">Book</button>
-  </div>
-
-  <!-- 2.5 hours -->
-  <div class="offer-card">
-    <div class="offer-title">2.5 Hours Session</div>
-    <div class="offer-desc">
-      Time dedicated to deeper understanding and personal exploration.
-    </div>
-    <div class="offer-price">$25</div>
-    <button class="book-btn" onclick="bookOffer('2.5 Hours Session', 25)">Book</button>
-  </div>
-
-  <!-- 3 hours -->
-  <div class="offer-card">
-    <div class="offer-title">3 Hours Session</div>
-    <div class="offer-desc">
-      A complete session for profound reflection and inner clarity.
-    </div>
-    <div class="offer-price">$30</div>
-    <button class="book-btn" onclick="bookOffer('3 Hours Session', 30)">Book</button>
-  </div>
-
-  <!-- 3.5 hours -->
-  <div class="offer-card">
-    <div class="offer-title">3.5 Hours Session</div>
-    <div class="offer-desc">
-      A powerful extended session for personal growth and insight.
-    </div>
-    <div class="offer-price">$35</div>
-    <button class="book-btn" onclick="bookOffer('3.5 Hours Session', 35)">Book</button>
-  </div>
-
-  <!-- 4 hours -->
-  <div class="offer-card">
-    <div class="offer-title">4 Hours Session</div>
-    <div class="offer-desc">
-      Deep exploration of thoughts and perspectives in a calm environment.
-    </div>
-    <div class="offer-price">$40</div>
-    <button class="book-btn" onclick="bookOffer('4 Hours Session', 40)">Book</button>
-  </div>
-
-  <!-- 4.5 hours -->
-  <div class="offer-card">
-    <div class="offer-title">4.5 Hours Session</div>
-    <div class="offer-desc">
-      Long-form conversation designed for clarity and personal awareness.
-    </div>
-    <div class="offer-price">$45</div>
-    <button class="book-btn" onclick="bookOffer('4.5 Hours Session', 45)">Book</button>
-  </div>
-
-  <!-- 5 hours -->
-  <div class="offer-card">
-    <div class="offer-title">5 Hours Session</div>
-    <div class="offer-desc">
-      The most complete space for deep reflection and transformation.
-    </div>
-    <div class="offer-price">$50</div>
-    <button class="book-btn" onclick="bookOffer('5 Hours Session', 50)">Book</button>
-  </div>
-
+<div class="info-box">
+  <div class="session-name" id="offerName"></div>
+  <div class="session-price" id="offerPrice"></div>
 </div>
 
+<div class="message">
+  To complete the payment and schedule your session,  
+  please contact us on WhatsApp:
+  <br><br>
+  <strong>+212 722288965</strong>
+</div>
+
+<button class="whatsapp-btn" onclick="openWhatsApp()">
+  Continue on WhatsApp
+</button>
+
 <script>
-function bookOffer(name, price) {
-  localStorage.setItem("offerName", name);
-  localStorage.setItem("offerPrice", price);
-  window.location.href = "order.html";
+const name = localStorage.getItem("offerName");
+const price = localStorage.getItem("offerPrice");
+
+document.getElementById("offerName").innerText = name || "Selected Session";
+document.getElementById("offerPrice").innerText = price == 0 ? "Free" : "$" + price;
+
+function openWhatsApp() {
+  const message = encodeURIComponent(
+    "Hello PsyRCare, I would like to book this session: " + name + " (Price: $" + price + ")"
+  );
+  window.open("https://wa.me/212722288965?text=" + message, "_blank");
 }
 </script>
 
 </body>
 </html>
 
-   
-   
+
