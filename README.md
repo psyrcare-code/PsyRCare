@@ -2,63 +2,203 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Book Session - PsyRCare</title>
+<title>PsyRCare - Offers</title>
 
 <style>
 body {
+  margin: 0;
   background: black;
   color: white;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  text-align: center;
+  padding: 40px 20px;
 }
 
-.box {
+h1 {
+  font-size: 42px;
+  margin-bottom: 30px;
+}
+
+.offers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.offer-card {
   border: 1px solid white;
-  padding: 30px 50px;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 30px;
+.offer-card:hover {
+  transform: scale(1.03);
+}
+
+.offer-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.offer-desc {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 15px;
+}
+
+.offer-price {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.book-btn {
+  padding: 10px 26px;
   background: black;
   color: white;
   border: 1px solid white;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.book-btn:hover {
+  background: white;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Your Booking</h2>
-  <p id="offerName"></p>
-  <p id="offerPrice"></p>
+<h1>Choose Your Session</h1>
 
-  <button onclick="confirmBooking()">Confirm Booking</button>
+<div class="offers-container">
+
+  <!-- Free session -->
+  <div class="offer-card">
+    <div class="offer-title">Free Discovery Session</div>
+    <div class="offer-desc">
+      A short conversation to explore the platform and ask questions.
+    </div>
+    <div class="offer-price">Free</div>
+    <button class="book-btn" onclick="bookOffer('Free Discovery Session', 0)">
+      Book
+    </button>
+  </div>
+
+  <!-- 1.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">1.5 Hours Session</div>
+    <div class="offer-desc">
+      A deep conversation focused on clarity, reflection, and personal insight.
+    </div>
+    <div class="offer-price">$10</div>
+    <button class="book-btn" onclick="bookOffer('1.5 Hours Session', 10)">
+      Book
+    </button>
+  </div>
+
+  <!-- 2 hours -->
+  <div class="offer-card">
+    <div class="offer-title">2 Hours Session</div>
+    <div class="offer-desc">
+      A longer session to explore thoughts, emotions, and personal goals.
+    </div>
+    <div class="offer-price">$20</div>
+    <button class="book-btn" onclick="bookOffer('2 Hours Session', 20)">
+      Book
+    </button>
+  </div>
+
+  <!-- 2.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">2.5 Hours Session</div>
+    <div class="offer-desc">
+      Extended time for meaningful dialogue and personal exploration.
+    </div>
+    <div class="offer-price">$25</div>
+    <button class="book-btn" onclick="bookOffer('2.5 Hours Session', 25)">
+      Book
+    </button>
+  </div>
+
+  <!-- 3 hours -->
+  <div class="offer-card">
+    <div class="offer-title">3 Hours Session</div>
+    <div class="offer-desc">
+      A complete immersive session for deeper understanding and reflection.
+    </div>
+    <div class="offer-price">$30</div>
+    <button class="book-btn" onclick="bookOffer('3 Hours Session', 30)">
+      Book
+    </button>
+  </div>
+
+  <!-- 3.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">3.5 Hours Session</div>
+    <div class="offer-desc">
+      A powerful extended session for personal growth and insight.
+    </div>
+    <div class="offer-price">$35</div>
+    <button class="book-btn" onclick="bookOffer('3.5 Hours Session', 35)">
+      Book
+    </button>
+  </div>
+
+  <!-- 4 hours -->
+  <div class="offer-card">
+    <div class="offer-title">4 Hours Session</div>
+    <div class="offer-desc">
+      Deep exploration of thoughts and perspectives in a calm environment.
+    </div>
+    <div class="offer-price">$40</div>
+    <button class="book-btn" onclick="bookOffer('4 Hours Session', 40)">
+      Book
+    </button>
+  </div>
+
+  <!-- 4.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">4.5 Hours Session</div>
+    <div class="offer-desc">
+      Long-form conversation designed for clarity and personal awareness.
+    </div>
+    <div class="offer-price">$45</div>
+    <button class="book-btn" onclick="bookOffer('4.5 Hours Session', 45)">
+      Book
+    </button>
+  </div>
+
+  <!-- 5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">5 Hours Session</div>
+    <div class="offer-desc">
+      The most complete session for deep reflection and transformation.
+    </div>
+    <div class="offer-price">$50</div>
+    <button class="book-btn" onclick="bookOffer('5 Hours Session', 50)">
+      Book
+    </button>
+  </div>
+
 </div>
 
 <script>
-const name = localStorage.getItem("offerName");
-const price = localStorage.getItem("offerPrice");
-
-document.getElementById("offerName").innerText = "Session: " + name;
-document.getElementById("offerPrice").innerText = "Price: $" + price;
-
-function confirmBooking() {
-  alert("Your session has been booked successfully 🤍");
+function bookOffer(name, price) {
+  localStorage.setItem("offerName", name);
+  localStorage.setItem("offerPrice", price);
+  window.location.href = "order.html";
 }
 </script>
 
 </body>
 </html>
-
 
 
 
