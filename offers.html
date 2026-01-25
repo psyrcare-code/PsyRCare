@@ -4,95 +4,69 @@
 <meta charset="UTF-8">
 <title>PsyRCare - Offers</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-
 <style>
 body {
   margin: 0;
   background: black;
   color: white;
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-}
-
-/* شاشة الترحيب */
-#intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
+  font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  z-index: 9999;
+  padding: 40px 20px;
 }
 
-#text {
-  font-size: 24px;
-  max-width: 720px;
-  line-height: 1.8;
-  white-space: pre-line;
-}
-
-/* العنوان */
 h1 {
-  margin-top: 40px;
-  font-size: 32px;
-  font-weight: normal;
+  font-size: 42px;
+  margin-bottom: 30px;
 }
 
-/* العروض */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 30px auto;
-  max-width: 1200px;
+.offers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
 }
 
-.card {
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 14px;
+.offer-card {
+  border: 1px solid white;
   padding: 20px;
-  margin: 12px;
-  width: 260px;
+  border-radius: 12px;
+  text-align: center;
   transition: 0.3s;
 }
 
-.card:hover {
+.offer-card:hover {
   transform: scale(1.03);
-  border-color: #666;
 }
 
-.title {
-  font-size: 18px;
+.offer-title {
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
-.desc {
+.offer-desc {
   font-size: 14px;
-  color: #bbb;
-  margin-bottom: 12px;
+  opacity: 0.85;
+  margin-bottom: 15px;
 }
 
-.price {
+.offer-price {
   font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
-.btn {
-  border: 1px solid white;
-  padding: 8px 16px;
+.book-btn {
+  padding: 10px 26px;
+  background: black;
   color: white;
-  text-decoration: none;
-  display: inline-block;
+  border: 1px solid white;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.btn:hover {
+.book-btn:hover {
   background: white;
   color: black;
 }
@@ -101,122 +75,126 @@ h1 {
 
 <body>
 
-<div id="intro">
-  <div id="text"></div>
-</div>
+<h1>Choose Your Session</h1>
 
-<h1>Available Conversations</h1>
+<div class="offers-container">
 
-<div class="container">
-
-  <div class="card">
-    <div class="title">Free Introduction</div>
-    <div class="desc">A short meeting to ask questions and understand how PsyRCare works.</div>
-    <div class="price">Free</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- Free session -->
+  <div class="offer-card">
+    <div class="offer-title">Free Discovery Session</div>
+    <div class="offer-desc">
+      A short conversation to explore the platform and ask questions.
+    </div>
+    <div class="offer-price">Free</div>
+    <button class="book-btn" onclick="bookOffer('Free Discovery Session', 0)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">30-Minute Conversation</div>
-    <div class="desc">A calm and respectful space to share thoughts and ideas.</div>
-    <div class="price">$5</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 1.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">1.5 Hours Session</div>
+    <div class="offer-desc">
+      A deep conversation focused on clarity, reflection, and personal insight.
+    </div>
+    <div class="offer-price">$10</div>
+    <button class="book-btn" onclick="bookOffer('1.5 Hours Session', 10)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">1-Hour Conversation</div>
-    <div class="desc">A longer dialogue to explore questions and personal perspectives.</div>
-    <div class="price">$10</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 2 hours -->
+  <div class="offer-card">
+    <div class="offer-title">2 Hours Session</div>
+    <div class="offer-desc">
+      A longer session to explore thoughts, emotions, and personal goals.
+    </div>
+    <div class="offer-price">$20</div>
+    <button class="book-btn" onclick="bookOffer('2 Hours Session', 20)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">1.5-Hour Conversation</div>
-    <div class="desc">A deeper exchange designed for reflection and meaningful discussion.</div>
-    <div class="price">$15</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 2.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">2.5 Hours Session</div>
+    <div class="offer-desc">
+      Extended time for meaningful dialogue and personal exploration.
+    </div>
+    <div class="offer-price">$25</div>
+    <button class="book-btn" onclick="bookOffer('2.5 Hours Session', 25)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">2-Hour Conversation</div>
-    <div class="desc">Extended time to express ideas and explore topics in depth.</div>
-    <div class="price">$20</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 3 hours -->
+  <div class="offer-card">
+    <div class="offer-title">3 Hours Session</div>
+    <div class="offer-desc">
+      A complete immersive session for deeper understanding and reflection.
+    </div>
+    <div class="offer-price">$30</div>
+    <button class="book-btn" onclick="bookOffer('3 Hours Session', 30)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">2.5-Hour Conversation</div>
-    <div class="desc">A long and focused conversation for deeper understanding and clarity.</div>
-    <div class="price">$25</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 3.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">3.5 Hours Session</div>
+    <div class="offer-desc">
+      A powerful extended session for personal growth and insight.
+    </div>
+    <div class="offer-price">$35</div>
+    <button class="book-btn" onclick="bookOffer('3.5 Hours Session', 35)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">3-Hour Conversation</div>
-    <div class="desc">A complete session for extended discussion and thoughtful exploration.</div>
-    <div class="price">$30</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 4 hours -->
+  <div class="offer-card">
+    <div class="offer-title">4 Hours Session</div>
+    <div class="offer-desc">
+      Deep exploration of thoughts and perspectives in a calm environment.
+    </div>
+    <div class="offer-price">$40</div>
+    <button class="book-btn" onclick="bookOffer('4 Hours Session', 40)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">3.5-Hour Conversation</div>
-    <div class="desc">A long-form dialogue for those who need more time and focus.</div>
-    <div class="price">$35</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 4.5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">4.5 Hours Session</div>
+    <div class="offer-desc">
+      Long-form conversation designed for clarity and personal awareness.
+    </div>
+    <div class="offer-price">$45</div>
+    <button class="book-btn" onclick="bookOffer('4.5 Hours Session', 45)">
+      Book
+    </button>
   </div>
 
-  <div class="card">
-    <div class="title">4-Hour Conversation</div>
-    <div class="desc">An immersive exchange with space for reflection and deep discussion.</div>
-    <div class="price">$40</div>
-    <a href="order.html" class="btn">Book</a>
-  </div>
-
-  <div class="card">
-    <div class="title">4.5-Hour Conversation</div>
-    <div class="desc">A long and calm conversation designed for meaningful dialogue.</div>
-    <div class="price">$45</div>
-    <a href="order.html" class="btn">Book</a>
-  </div>
-
-  <div class="card">
-    <div class="title">5-Hour Full Conversation</div>
-    <div class="desc">A complete extended conversation for maximum time and focus.</div>
-    <div class="price">$50</div>
-    <a href="order.html" class="btn">Book</a>
+  <!-- 5 hours -->
+  <div class="offer-card">
+    <div class="offer-title">5 Hours Session</div>
+    <div class="offer-desc">
+      The most complete session for deep reflection and transformation.
+    </div>
+    <div class="offer-price">$50</div>
+    <button class="book-btn" onclick="bookOffer('5 Hours Session', 50)">
+      Book
+    </button>
   </div>
 
 </div>
 
 <script>
-const name = localStorage.getItem("userName") || "Friend";
-
-const message = `${name},
-
-you did not arrive here by chance.
-This space was created for thoughtful conversations,
-calm reflection, and honest dialogue.
-
-Take your time.
-Welcome to PsyRCare.`;
-
-let i = 0;
-const textDiv = document.getElementById("text");
-const intro = document.getElementById("intro");
-
-function type() {
-  if (i < message.length) {
-    textDiv.innerHTML += message.charAt(i);
-    i++;
-    setTimeout(type, 40);
-  } else {
-    setTimeout(() => {
-      intro.style.display = "none";
-    }, 1800);
-  }
+function bookOffer(name, price) {
+  localStorage.setItem("offerName", name);
+  localStorage.setItem("offerPrice", price);
+  window.location.href = "order.html";
 }
-
-type();
 </script>
 
 </body>
