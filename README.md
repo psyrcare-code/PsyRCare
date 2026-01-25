@@ -106,5 +106,3 @@ function openWhatsApp() {
 
 </body>
 </html>
-
- 
