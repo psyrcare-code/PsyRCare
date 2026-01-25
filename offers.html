@@ -14,36 +14,25 @@ body {
   text-align: center;
 }
 
-/* Intro */
-#intro {
-  min-height: 120px;
-  margin-bottom: 30px;
+/* Intro message */
+#introMessage {
+  font-size: 22px;
+  min-height: 60px;
+  margin-top: 120px;
 }
 
-#usernameBox {
-  font-size: 26px;
-  margin-bottom: 15px;
-  opacity: 0.95;
-}
-
-#welcomeBox {
-  font-size: 20px;
-  min-height: 40px;
-  opacity: 0.9;
-}
-
-/* Main content */
-#mainContent {
+/* After intro */
+#mainSection {
   display: none;
 }
 
-#bookingTitle {
-  font-size: 28px;
+#chooseText {
+  font-size: 26px;
   margin-bottom: 10px;
   font-weight: 300;
 }
 
-#bookingSub {
+#chooseSub {
   font-size: 15px;
   opacity: 0.7;
   margin-bottom: 35px;
@@ -104,16 +93,13 @@ body {
 
 <body>
 
-<!-- Intro -->
-<div id="intro">
-  <div id="usernameBox"></div>
-  <div id="welcomeBox"></div>
-</div>
+<!-- Intro psychological message -->
+<div id="introMessage"></div>
 
-<!-- Main content -->
-<div id="mainContent">
-  <div id="bookingTitle">Find the session that resonates with you</div>
-  <div id="bookingSub">A calm space to begin your journey</div>
+<!-- Main offers section -->
+<div id="mainSection">
+  <div id="chooseText">Choose the session that feels right for you</div>
+  <div id="chooseSub">Take your time. This space is yours.</div>
 
   <div class="offers-container">
 
@@ -198,32 +184,29 @@ body {
 </div>
 
 <script>
-let username = localStorage.getItem("username") || "Friend";
+// username from register
+let username = localStorage.getItem("username") || "You";
 
-let usernameBox = document.getElementById("usernameBox");
-let welcomeBox = document.getElementById("welcomeBox");
-let intro = document.getElementById("intro");
-let mainContent = document.getElementById("mainContent");
+// psychological welcome text
+let message = username + ", you are in the right place. This space is safe for you.";
+let index = 0;
+let intro = document.getElementById("introMessage");
+let main = document.getElementById("mainSection");
 
-usernameBox.innerText = username;
-
-let welcomeText = "Welcome to PsyRCare. This space was created for your calm and clarity.";
-let i = 0;
-
-function typeWelcome() {
-  if (i < welcomeText.length) {
-    welcomeBox.innerHTML += welcomeText.charAt(i);
-    i++;
-    setTimeout(typeWelcome, 45);
+function typeMessage() {
+  if (index < message.length) {
+    intro.innerHTML += message.charAt(index);
+    index++;
+    setTimeout(typeMessage, 45);
   } else {
     setTimeout(() => {
-      intro.style.display = "none";   // hide name + welcome
-      mainContent.style.display = "block"; // show offers
+      intro.style.display = "none"; // hide welcome message
+      main.style.display = "block"; // show offers
     }, 1200);
   }
 }
 
-setTimeout(typeWelcome, 800);
+typeMessage();
 
 function bookOffer(name, price) {
   localStorage.setItem("offerName", name);
@@ -234,3 +217,6 @@ function bookOffer(name, price) {
 
 </body>
 </html>
+
+
+
