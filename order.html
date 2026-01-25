@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Book Session - PsyRCare</title>
+<title>PsyRCare - Booking</title>
 
 <style>
 body {
+  margin: 0;
   background: black;
   color: white;
   font-family: Arial, sans-serif;
@@ -15,44 +16,89 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
+  padding: 20px;
 }
 
-.box {
+h1 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.info-box {
   border: 1px solid white;
-  padding: 30px 50px;
-  border-radius: 10px;
+  padding: 20px 30px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  max-width: 400px;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  background: black;
+.session-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.session-price {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.whatsapp-btn {
+  padding: 12px 28px;
+  border: 1px solid white;
+  background: transparent;
   color: white;
-  border: 1px solid white;
   cursor: pointer;
+  border-radius: 22px;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  background: white;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-  <h2>Your Booking</h2>
-  <p id="offerName"></p>
-  <p id="offerPrice"></p>
+<h1>Your Session Details</h1>
 
-  <button onclick="confirmBooking()">Confirm Booking</button>
+<div class="info-box">
+  <div class="session-name" id="offerName"></div>
+  <div class="session-price" id="offerPrice"></div>
 </div>
+
+<div class="message">
+  To complete the payment and schedule your session,  
+  please contact us on WhatsApp:
+  <br><br>
+  <strong>+212 722288965</strong>
+</div>
+
+<button class="whatsapp-btn" onclick="openWhatsApp()">
+  Continue on WhatsApp
+</button>
 
 <script>
 const name = localStorage.getItem("offerName");
 const price = localStorage.getItem("offerPrice");
 
-document.getElementById("offerName").innerText = "Session: " + name;
-document.getElementById("offerPrice").innerText = "Price: $" + price;
+document.getElementById("offerName").innerText = name || "Selected Session";
+document.getElementById("offerPrice").innerText = price == 0 ? "Free" : "$" + price;
 
-function confirmBooking() {
-  alert("Your session has been booked successfully 🤍");
+function openWhatsApp() {
+  const message = encodeURIComponent(
+    "Hello PsyRCare, I would like to book this session: " + name + " (Price: $" + price + ")"
+  );
+  window.open("https://wa.me/212722288965?text=" + message, "_blank");
 }
 </script>
 
