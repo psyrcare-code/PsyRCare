@@ -4,59 +4,74 @@
 <meta charset="UTF-8">
 <title>PsyRCare - Register</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
   background: black;
   color: white;
-  height: 100vh;
+  font-family: 'Playfair Display', serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  height: 100vh;
 }
 
 .container {
+  width: 400px;
   text-align: center;
-  width: 320px;
 }
 
 h1 {
-  margin-bottom: 10px;
-  font-size: 36px;
-}
-
-p {
-  color: #ccc;
+  font-size: 32px;
   margin-bottom: 30px;
-  font-size: 14px;
+  font-weight: normal;
 }
 
 input {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  background: black;
-  border: 1px solid white;
+  background: transparent;
+  border: 1px solid #555;
   color: white;
+  border-radius: 6px;
   outline: none;
+  font-size: 14px;
 }
 
-input::placeholder {
-  color: #777;
+input:focus {
+  border-color: white;
 }
 
-.btn {
+.error {
+  color: #ff6b6b;
+  font-size: 12px;
+  display: none;
+  text-align: left;
+}
+
+button {
   margin-top: 20px;
+  padding: 12px 30px;
   border: 1px solid white;
-  padding: 12px;
+  background: transparent;
+  color: white;
   cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
   transition: 0.3s;
+  opacity: 0.5;
 }
 
-.btn:hover {
+button:hover {
   background: white;
   color: black;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 </style>
 </head>
@@ -64,32 +79,59 @@ input::placeholder {
 <body>
 
 <div class="container">
-  <h1>Welcome</h1>
-  <p>Before we begin, tell us a little about you.</p>
+  <h1>Join PsyRCare</h1>
 
   <input type="text" id="name" placeholder="Your name">
-  <input type="email" id="email" placeholder="Your email">
 
-  <div class="btn" onclick="continueToOffers()">Continue</div>
+  <input type="email" id="email" placeholder="Your email">
+  <div id="emailError" class="error">Please enter a valid email address.</div>
+
+  <button id="continueBtn" disabled>Continue</button>
 </div>
 
 <script>
-function continueToOffers() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const continueBtn = document.getElementById("continueBtn");
+const emailError = document.getElementById("emailError");
 
-  if (name === "" || email === "") {
-    alert("Please fill in your name and email.");
-    return;
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function checkForm() {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  if (name.length > 1 && isValidEmail(email)) {
+    continueBtn.disabled = false;
+    continueBtn.style.opacity = "1";
+    emailError.style.display = "none";
+  } else {
+    continueBtn.disabled = true;
+    continueBtn.style.opacity = "0.5";
+    if (email.length > 0 && !isValidEmail(email)) {
+      emailError.style.display = "block";
+    } else {
+      emailError.style.display = "none";
+    }
   }
+}
 
-  // حفظ البيانات مؤقتًا (اختياري)
+nameInput.addEventListener("input", checkForm);
+emailInput.addEventListener("input", checkForm);
+
+continueBtn.addEventListener("click", function() {
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+
+  // حفظ البيانات
   localStorage.setItem("userName", name);
   localStorage.setItem("userEmail", email);
 
   // الانتقال إلى صفحة العروض
   window.location.href = "offers.html";
-}
+});
 </script>
 
 </body>
