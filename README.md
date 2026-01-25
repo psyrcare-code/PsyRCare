@@ -31,32 +31,40 @@ body {
 
 #text {
   font-size: 24px;
-  max-width: 700px;
+  max-width: 720px;
   line-height: 1.8;
   white-space: pre-line;
 }
 
-/* العروض */
+/* العنوان */
 h1 {
   margin-top: 40px;
   font-size: 32px;
+  font-weight: normal;
 }
 
+/* العروض */
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 30px auto;
-  max-width: 1100px;
+  max-width: 1200px;
 }
 
 .card {
   background: #111;
   border: 1px solid #333;
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 20px;
   margin: 12px;
   width: 260px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  border-color: #666;
 }
 
 .title {
@@ -81,6 +89,12 @@ h1 {
   color: white;
   text-decoration: none;
   display: inline-block;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
 }
 </style>
 </head>
@@ -97,29 +111,78 @@ h1 {
 
   <div class="card">
     <div class="title">Free Introduction</div>
-    <div class="desc">A short meeting to ask questions about the platform.</div>
+    <div class="desc">A short meeting to ask questions and understand how PsyRCare works.</div>
     <div class="price">Free</div>
     <a href="order.html" class="btn">Start</a>
   </div>
 
   <div class="card">
     <div class="title">30-Minute Conversation</div>
-    <div class="desc">A calm space to talk and share thoughts.</div>
+    <div class="desc">A calm and respectful space to share thoughts and ideas.</div>
     <div class="price">$5</div>
     <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="card">
     <div class="title">1-Hour Conversation</div>
-    <div class="desc">A longer discussion for reflection and dialogue.</div>
+    <div class="desc">A longer dialogue to explore questions and personal perspectives.</div>
     <div class="price">$10</div>
     <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="card">
+    <div class="title">1.5-Hour Conversation</div>
+    <div class="desc">A deeper exchange designed for reflection and meaningful discussion.</div>
+    <div class="price">$15</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
     <div class="title">2-Hour Conversation</div>
-    <div class="desc">Extended time for deeper conversation.</div>
+    <div class="desc">Extended time to express ideas and explore topics in depth.</div>
     <div class="price">$20</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">2.5-Hour Conversation</div>
+    <div class="desc">A long and focused conversation for deeper understanding and clarity.</div>
+    <div class="price">$25</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">3-Hour Conversation</div>
+    <div class="desc">A complete session for extended discussion and thoughtful exploration.</div>
+    <div class="price">$30</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">3.5-Hour Conversation</div>
+    <div class="desc">A long-form dialogue for those who need more time and focus.</div>
+    <div class="price">$35</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">4-Hour Conversation</div>
+    <div class="desc">An immersive exchange with space for reflection and deep discussion.</div>
+    <div class="price">$40</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">4.5-Hour Conversation</div>
+    <div class="desc">A long and calm conversation designed for meaningful dialogue.</div>
+    <div class="price">$45</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="card">
+    <div class="title">5-Hour Full Conversation</div>
+    <div class="desc">A complete extended conversation for maximum time and focus.</div>
+    <div class="price">$50</div>
     <a href="order.html" class="btn">Continue</a>
   </div>
 
@@ -131,7 +194,8 @@ const name = localStorage.getItem("userName") || "Friend";
 const message = `${name},
 
 you did not arrive here by chance.
-This space is for calm and honest conversations.
+This space was created for thoughtful conversations,
+calm reflection, and honest dialogue.
 
 Take your time.
 Welcome to PsyRCare.`;
@@ -148,7 +212,7 @@ function type() {
   } else {
     setTimeout(() => {
       intro.style.display = "none";
-    }, 1500);
+    }, 1800);
   }
 }
 
