@@ -199,8 +199,11 @@ function bookOffer(name, price) {
 
 </body>
 </html>
+ 
 
-
+  
+   
+ 
 
 
 
