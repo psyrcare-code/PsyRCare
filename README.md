@@ -31,10 +31,9 @@ body {
 
 #intro-text {
   font-size: 26px;
-  max-width: 700px;
+  max-width: 720px;
   line-height: 1.9;
   letter-spacing: 0.6px;
-  text-align: center;
   white-space: pre-line;
 }
 
@@ -51,7 +50,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   margin: 40px auto;
-  max-width: 1000px;
+  max-width: 1100px;
 }
 
 .offer-card {
@@ -60,7 +59,7 @@ h1 {
   border-radius: 14px;
   padding: 22px;
   margin: 15px;
-  width: 260px;
+  width: 270px;
   transition: 0.3s;
 }
 
@@ -109,36 +108,85 @@ h1 {
   <div id="intro-text"></div>
 </div>
 
-<h1>Our Sessions</h1>
+<h1>Available Conversations</h1>
 
 <div class="offers-container">
 
   <div class="offer-card">
-    <div class="offer-title">Free Intro Session</div>
-    <div class="offer-desc">A gentle first meeting in a safe space.</div>
+    <div class="offer-title">Free Introduction</div>
+    <div class="offer-desc">A short meeting to ask questions and discover how PsyRCare works.</div>
     <div class="offer-price">Free</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Start</a>
   </div>
 
   <div class="offer-card">
-    <div class="offer-title">30-Minute Session</div>
-    <div class="offer-desc">A calm conversation to understand your feelings.</div>
+    <div class="offer-title">30-Minute Conversation</div>
+    <div class="offer-desc">A simple and calm space to talk, share thoughts, and gain clarity.</div>
     <div class="offer-price">$5</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="offer-card">
-    <div class="offer-title">1-Hour Session</div>
-    <div class="offer-desc">A deeper therapeutic dialogue.</div>
+    <div class="offer-title">1-Hour Conversation</div>
+    <div class="offer-desc">A longer discussion to explore ideas, feelings, and personal questions.</div>
     <div class="offer-price">$10</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
   <div class="offer-card">
-    <div class="offer-title">1.5-Hour Deep Session</div>
-    <div class="offer-desc">A longer journey into understanding and clarity.</div>
+    <div class="offer-title">1.5-Hour Conversation</div>
+    <div class="offer-desc">A deeper exchange designed for reflection and meaningful dialogue.</div>
     <div class="offer-price">$15</div>
-    <a href="order.html" class="btn">Book</a>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">2-Hour Conversation</div>
+    <div class="offer-desc">An extended time to express yourself and explore your thoughts freely.</div>
+    <div class="offer-price">$20</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">2.5-Hour Conversation</div>
+    <div class="offer-desc">A long and focused dialogue for deeper understanding and perspective.</div>
+    <div class="offer-price">$25</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">3-Hour Conversation</div>
+    <div class="offer-desc">A complete session for extended discussion and thoughtful exploration.</div>
+    <div class="offer-price">$30</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">3.5-Hour Conversation</div>
+    <div class="offer-desc">A long-form conversation for those who need more time and depth.</div>
+    <div class="offer-price">$35</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">4-Hour Conversation</div>
+    <div class="offer-desc">An immersive dialogue experience with space for reflection and exchange.</div>
+    <div class="offer-price">$40</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">4.5-Hour Conversation</div>
+    <div class="offer-desc">A long and calm conversation designed for deep personal expression.</div>
+    <div class="offer-price">$45</div>
+    <a href="order.html" class="btn">Continue</a>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">5-Hour Full Conversation</div>
+    <div class="offer-desc">A complete extended dialogue for those who want maximum time and focus.</div>
+    <div class="offer-price">$50</div>
+    <a href="order.html" class="btn">Continue</a>
   </div>
 
 </div>
@@ -152,9 +200,10 @@ window.onload = function() {
   const message = `${name},
 
 you did not arrive here by chance.
-This space was created for moments like yours.
+This space was created for thoughtful conversations,
+calm reflection, and honest dialogue.
 
-Take a breath.
+Take your time.
 You are welcome in PsyRCare.`;
 
   let index = 0;
@@ -163,7 +212,7 @@ You are welcome in PsyRCare.`;
     if (index < message.length) {
       textElement.innerHTML += message.charAt(index);
       index++;
-      setTimeout(typeText, 45); // سرعة الكتابة (يمكن تعديلها)
+      setTimeout(typeText, 45);
     } else {
       setTimeout(() => {
         overlay.style.opacity = "0";
