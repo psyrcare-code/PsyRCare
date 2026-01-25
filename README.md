@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Booking</title>
+<title>PsyRCare - Offers</title>
 
 <style>
 body {
@@ -10,57 +10,74 @@ body {
   background: black;
   color: white;
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  padding: 40px 20px;
   text-align: center;
-  padding: 20px;
+}
+
+#welcome {
+  font-size: 20px;
+  margin-bottom: 15px;
+  opacity: 0.9;
 }
 
 h1 {
   font-size: 34px;
-  margin-bottom: 20px;
-}
-
-.info-box {
-  border: 1px solid white;
-  padding: 20px 30px;
-  border-radius: 14px;
-  margin-bottom: 25px;
-  max-width: 420px;
-}
-
-.session-name {
-  font-size: 18px;
   margin-bottom: 10px;
+  font-weight: normal;
 }
 
-.session-price {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.message {
+.subtitle {
   font-size: 15px;
-  opacity: 0.85;
-  margin-bottom: 25px;
-  line-height: 1.7;
+  opacity: 0.7;
+  margin-bottom: 35px;
 }
 
-.whatsapp-btn {
-  padding: 12px 30px;
+.offers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.offer-card {
+  border: 1px solid white;
+  padding: 18px;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.offer-card:hover {
+  transform: scale(1.03);
+}
+
+.offer-title {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.offer-desc {
+  font-size: 13px;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.offer-price {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.book-btn {
+  padding: 8px 22px;
   border: 1px solid white;
   background: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 24px;
-  font-size: 15px;
+  border-radius: 20px;
   transition: 0.3s;
 }
 
-.whatsapp-btn:hover {
+.book-btn:hover {
   background: white;
   color: black;
 }
@@ -69,40 +86,106 @@ h1 {
 
 <body>
 
-<h1>Your Session Details</h1>
+<div id="welcome"></div>
 
-<div class="info-box">
-  <div class="session-name" id="offerName"></div>
-  <div class="session-price" id="offerPrice"></div>
+<h1>Find the session that resonates with you</h1>
+<div class="subtitle">A calm space for conversation and clarity.</div>
+
+<div class="offers-container">
+
+  <div class="offer-card">
+    <div class="offer-title">Free Discovery Session</div>
+    <div class="offer-desc">A short conversation to discover the platform.</div>
+    <div class="offer-price">Free</div>
+    <button class="book-btn" onclick="bookOffer('Free Discovery Session', 0)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">30 Minutes Session</div>
+    <div class="offer-desc">A gentle moment for open conversation.</div>
+    <div class="offer-price">$5</div>
+    <button class="book-btn" onclick="bookOffer('30 Minutes Session', 5)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1 Hour Session</div>
+    <div class="offer-desc">A focused time for meaningful dialogue.</div>
+    <div class="offer-price">$10</div>
+    <button class="book-btn" onclick="bookOffer('1 Hour Session', 10)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">1.5 Hours Session</div>
+    <div class="offer-desc">More time for deeper conversation.</div>
+    <div class="offer-price">$15</div>
+    <button class="book-btn" onclick="bookOffer('1.5 Hours Session', 15)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">2 Hours Session</div>
+    <div class="offer-desc">A longer space for reflection.</div>
+    <div class="offer-price">$20</div>
+    <button class="book-btn" onclick="bookOffer('2 Hours Session', 20)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">2.5 Hours Session</div>
+    <div class="offer-desc">Time dedicated to deeper understanding.</div>
+    <div class="offer-price">$25</div>
+    <button class="book-btn" onclick="bookOffer('2.5 Hours Session', 25)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">3 Hours Session</div>
+    <div class="offer-desc">A complete space for clarity.</div>
+    <div class="offer-price">$30</div>
+    <button class="book-btn" onclick="bookOffer('3 Hours Session', 30)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">3.5 Hours Session</div>
+    <div class="offer-desc">Extended time for personal insight.</div>
+    <div class="offer-price">$35</div>
+    <button class="book-btn" onclick="bookOffer('3.5 Hours Session', 35)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">4 Hours Session</div>
+    <div class="offer-desc">Deep exploration in a calm environment.</div>
+    <div class="offer-price">$40</div>
+    <button class="book-btn" onclick="bookOffer('4 Hours Session', 40)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">4.5 Hours Session</div>
+    <div class="offer-desc">Long-form conversation for awareness.</div>
+    <div class="offer-price">$45</div>
+    <button class="book-btn" onclick="bookOffer('4.5 Hours Session', 45)">Book</button>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-title">5 Hours Session</div>
+    <div class="offer-desc">The most complete reflective experience.</div>
+    <div class="offer-price">$50</div>
+    <button class="book-btn" onclick="bookOffer('5 Hours Session', 50)">Book</button>
+  </div>
+
 </div>
-
-<div class="message">
-  To complete the payment and schedule your session,  
-  please contact us on WhatsApp:
-  <br><br>
-  <strong>+212 722288965</strong>
-  <br><br>
-  You will receive a response on WhatsApp Business within 24 hours.
-</div>
-
-<button class="whatsapp-btn" onclick="openWhatsApp()">
-  Continue on WhatsApp
-</button>
 
 <script>
-const name = localStorage.getItem("offerName");
-const price = localStorage.getItem("offerPrice");
+let username = localStorage.getItem("username");
+if (username) {
+  document.getElementById("welcome").innerText =
+    "Welcome, " + username + " 🤍";
+}
 
-document.getElementById("offerName").innerText = name || "Selected Session";
-document.getElementById("offerPrice").innerText = price == 0 ? "Free" : "$" + price;
-
-function openWhatsApp() {
-  const message = encodeURIComponent(
-    "Hello PsyRCare, I would like to book this session: " + name + " (Price: $" + price + ")"
-  );
-  window.open("https://wa.me/212722288965?text=" + message, "_blank");
+function bookOffer(name, price) {
+  localStorage.setItem("offerName", name);
+  localStorage.setItem("offerPrice", price);
+  window.location.href = "order.html";
 }
 </script>
 
 </body>
 </html>
+ 
