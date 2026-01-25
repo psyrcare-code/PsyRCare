@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>PsyRCare - Offers</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -15,7 +15,7 @@ body {
   text-align: center;
 }
 
-/* شاشة الترحيب العلاجية */
+/* شاشة الترحيب */
 #intro-overlay {
   position: fixed;
   top: 0;
@@ -30,20 +30,22 @@ body {
 }
 
 #intro-text {
-  font-size: 24px;
+  font-size: 26px;
   max-width: 700px;
   line-height: 1.9;
   letter-spacing: 0.6px;
   text-align: center;
+  white-space: pre-line;
 }
 
-/* العروض */
+/* العنوان */
 h1 {
   margin-top: 50px;
   font-size: 34px;
   font-weight: normal;
 }
 
+/* العروض */
 .offers-container {
   display: flex;
   flex-wrap: wrap;
@@ -143,56 +145,35 @@ h1 {
 
 <script>
 window.onload = function() {
-  const name = localStorage.getItem("userName") || "friend";
+  const name = localStorage.getItem("userName") || "Friend";
   const textElement = document.getElementById("intro-text");
   const overlay = document.getElementById("intro-overlay");
 
-  const sentences = [
-    `Welcome, ${name}.`,
-    "You are in a safe place.",
-    "There is no need to hurry.",
-    "Take a breath.",
-    "We are here with you."
-  ];
+  const message = `${name},
 
-  let sentenceIndex = 0;
-  let charIndex = 0;
+you did not arrive here by chance.
+This space was created for moments like yours.
 
-  function speak(text) {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = "en-US";
-    speech.rate = 0.6;   // بطيء جدًا ومريح
-    speech.pitch = 0.7;  // نبرة هادئة
-    speech.volume = 0.6; // صوت منخفض
-    window.speechSynthesis.speak(speech);
-  }
+Take a breath.
+You are welcome in PsyRCare.`;
 
-  function typeSentence() {
-    if (sentenceIndex >= sentences.length) {
+  let index = 0;
+
+  function typeText() {
+    if (index < message.length) {
+      textElement.innerHTML += message.charAt(index);
+      index++;
+      setTimeout(typeText, 45); // سرعة الكتابة (يمكن تعديلها)
+    } else {
       setTimeout(() => {
         overlay.style.opacity = "0";
         overlay.style.transition = "2s";
         setTimeout(() => overlay.style.display = "none", 2000);
-      }, 1500);
-      return;
-    }
-
-    const currentSentence = sentences[sentenceIndex];
-
-    if (charIndex < currentSentence.length) {
-      textElement.innerHTML += currentSentence.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeSentence, 70); // سرعة الكتابة (أبطأ = أكثر علاجية)
-    } else {
-      speak(currentSentence); // قراءة الجملة بصوت هادئ
-      textElement.innerHTML += "<br><br>";
-      sentenceIndex++;
-      charIndex = 0;
-      setTimeout(typeSentence, 1800); // انتظار قبل الجملة التالية
+      }, 2000);
     }
   }
 
-  typeSentence();
+  typeText();
 };
 </script>
 
