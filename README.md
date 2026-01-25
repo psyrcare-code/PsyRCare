@@ -2,136 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Register</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<title>Book Session - PsyRCare</title>
 
 <style>
 body {
-  margin: 0;
   background: black;
   color: white;
-  font-family: 'Playfair Display', serif;
+  font-family: Arial, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-.container {
-  width: 400px;
   text-align: center;
 }
 
-h1 {
-  font-size: 32px;
-  margin-bottom: 30px;
-  font-weight: normal;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  background: transparent;
-  border: 1px solid #555;
-  color: white;
-  border-radius: 6px;
-  outline: none;
-  font-size: 14px;
-}
-
-input:focus {
-  border-color: white;
-}
-
-.error {
-  color: #ff6b6b;
-  font-size: 12px;
-  display: none;
-  text-align: left;
+.box {
+  border: 1px solid white;
+  padding: 30px 50px;
+  border-radius: 10px;
 }
 
 button {
   margin-top: 20px;
   padding: 12px 30px;
-  border: 1px solid white;
-  background: transparent;
+  background: black;
   color: white;
+  border: 1px solid white;
   cursor: pointer;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: 0.3s;
-  opacity: 0.5;
-}
-
-button:hover {
-  background: white;
-  color: black;
-}
-
-button:disabled {
-  cursor: not-allowed;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Join PsyRCare</h1>
+<div class="box">
+  <h2>Your Booking</h2>
+  <p id="offerName"></p>
+  <p id="offerPrice"></p>
 
-  <input type="text" id="name" placeholder="Your name">
-
-  <input type="email" id="email" placeholder="Your email">
-  <div id="emailError" class="error">Please enter a valid email address.</div>
-
-  <button id="continueBtn" disabled>Continue</button>
+  <button onclick="confirmBooking()">Confirm Booking</button>
 </div>
 
 <script>
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const continueBtn = document.getElementById("continueBtn");
-const emailError = document.getElementById("emailError");
+const name = localStorage.getItem("offerName");
+const price = localStorage.getItem("offerPrice");
 
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+document.getElementById("offerName").innerText = "Session: " + name;
+document.getElementById("offerPrice").innerText = "Price: $" + price;
+
+function confirmBooking() {
+  alert("Your session has been booked successfully 🤍");
 }
-
-function checkForm() {
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-
-  if (name.length > 1 && isValidEmail(email)) {
-    continueBtn.disabled = false;
-    continueBtn.style.opacity = "1";
-    emailError.style.display = "none";
-  } else {
-    continueBtn.disabled = true;
-    continueBtn.style.opacity = "0.5";
-    if (email.length > 0 && !isValidEmail(email)) {
-      emailError.style.display = "block";
-    } else {
-      emailError.style.display = "none";
-    }
-  }
-}
-
-nameInput.addEventListener("input", checkForm);
-emailInput.addEventListener("input", checkForm);
-
-continueBtn.addEventListener("click", function() {
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-
-  // حفظ البيانات
-  localStorage.setItem("userName", name);
-  localStorage.setItem("userEmail", email);
-
-  // الانتقال إلى صفحة العروض
-  window.location.href = "offers.html";
-});
 </script>
 
 </body>
