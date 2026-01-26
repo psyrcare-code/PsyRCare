@@ -82,7 +82,7 @@ h1 {
   <br><br>
   <strong>+212 722288965</strong>
   <br><br>
-  You will receive a response on WhatsApp within 24 hours.
+
 </div>
 
 <button class="whatsapp-btn" onclick="openWhatsApp()">
