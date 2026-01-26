@@ -209,7 +209,7 @@ function typeMessage() {
 typeMessage();
 
 function bookOffer(name, price) {
-  localStorage.setItem("offerName", name);
+  localStorage.setItem("offername", name);
   localStorage.setItem("offerPrice", price);
   window.location.href = "order.html";
 }
