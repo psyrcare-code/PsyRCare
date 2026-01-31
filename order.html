@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Booking</title>
+<title>PsyRCare - Order</title>
 
 <style>
 body {
@@ -10,57 +10,53 @@ body {
   background: black;
   color: white;
   font-family: Arial, sans-serif;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+}
+
+.container {
+  width: 420px;
   text-align: center;
-  padding: 20px;
+  border: 1px solid #333;
+  padding: 35px 30px;
+  border-radius: 14px;
 }
 
 h1 {
-  font-size: 34px;
-  margin-bottom: 20px;
-}
-
-.info-box {
-  border: 1px solid white;
-  padding: 20px 30px;
-  border-radius: 14px;
+  font-size: 26px;
+  font-weight: 300;
   margin-bottom: 25px;
-  max-width: 420px;
 }
 
-.session-name {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.session-price {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.message {
+.details {
   font-size: 15px;
-  opacity: 0.85;
-  margin-bottom: 25px;
-  line-height: 1.7;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
-.whatsapp-btn {
-  padding: 12px 30px;
+.note {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 25px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 30px;
   border: 1px solid white;
   background: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 24px;
-  font-size: 15px;
   transition: 0.3s;
+  font-size: 14px;
 }
 
-.whatsapp-btn:hover {
+button:hover {
   background: white;
   color: black;
 }
@@ -69,38 +65,56 @@ h1 {
 
 <body>
 
-<h1>Your Session Details</h1>
+<div class="container">
 
-<div class="info-box">
-  <div class="session-name" id="offerName"></div>
-  <div class="session-price" id="offerPrice"></div>
+  <h1>Your session details</h1>
+
+  <div class="details" id="sessionDetails">
+    Loading...
+  </div>
+
+  <div class="note">
+    Payment and session scheduling will be completed via WhatsApp.<br>
+    You will receive a reply within 24 hours.
+  </div>
+
+  <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
+  <button onclick="goToOffers()">Back to offers</button>
+  <button onclick="goToConversation()">Conversation page</button>
+
 </div>
-
-<div class="message">
-  To complete the payment and schedule your session,  
-  please contact us on WhatsApp:
-  <br><br>
-  <strong>+212 722288965</strong>
-  <br><br>
-
-</div>
-
-<button class="whatsapp-btn" onclick="openWhatsApp()">
-  Continue on WhatsApp
-</button>
 
 <script>
-const name = localStorage.getItem("offerName");
-const price = localStorage.getItem("offerPrice");
+const sessionName = localStorage.getItem("offerName");
+const sessionPrice = localStorage.getItem("offerPrice");
+const username = localStorage.getItem("username");
 
-document.getElementById("offerName").innerText = name || "Selected Session";
-document.getElementById("offerPrice").innerText = price == 0 ? "Free" : "$" + price;
+const sessionDetails = document.getElementById("sessionDetails");
 
-function openWhatsApp() {
-  const message = encodeURIComponent(
-    "Hello PsyRCare, I would like to book this session: " + name + " (Price: $" + price + ")"
-  );
-  window.open("https://wa.me/212722288965?text=" + message, "_blank");
+if (sessionName && sessionPrice !== null) {
+  sessionDetails.innerHTML = `
+    <strong>Session:</strong> ${sessionName}<br>
+    <strong>Price:</strong> $${sessionPrice}
+  `;
+} else {
+  sessionDetails.innerHTML = "No session selected.";
+}
+
+// WhatsApp redirect
+function continueWhatsApp() {
+  let message = `Hello PsyRCare, my name is ${username}. I would like to book the following session: ${sessionName} (${sessionPrice}$).`;
+  let url = "https://wa.me/212722288965?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+// Back to offers
+function goToOffers() {
+  window.location.href = "offers.html";
+}
+
+// Conversation / About page
+function goToConversation() {
+  window.location.href = "about.html"; // غيريها إذا أردتِ
 }
 </script>
 
