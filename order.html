@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-  width: 420px;
+  width: 450px;
   text-align: center;
   border: 1px solid #333;
   padding: 35px 30px;
@@ -31,16 +31,22 @@ h1 {
 }
 
 .details {
+  text-align: left;
   font-size: 15px;
   line-height: 1.8;
   margin-bottom: 30px;
-  opacity: 0.9;
+  opacity: 0.95;
+}
+
+.details span {
+  opacity: 0.7;
 }
 
 .note {
   font-size: 13px;
   opacity: 0.7;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 button {
@@ -85,38 +91,47 @@ button:hover {
 </div>
 
 <script>
-const sessionName = localStorage.getItem("offerName");
-const sessionPrice = localStorage.getItem("offerPrice");
+const name = localStorage.getItem("offerName");
+const duration = localStorage.getItem("offerDuration");
+const description = localStorage.getItem("offerDescription");
+const price = localStorage.getItem("offerPrice");
 const username = localStorage.getItem("username");
 
 const sessionDetails = document.getElementById("sessionDetails");
 
-if (sessionName && sessionPrice !== null) {
+if (name && duration && description && price !== null) {
   sessionDetails.innerHTML = `
-    <strong>Session:</strong> ${sessionName}<br>
-    <strong>Price:</strong> $${sessionPrice}
+    <strong>Session:</strong> ${name}<br>
+    <strong>Duration:</strong> ${duration}<br>
+    <strong>Description:</strong><br>
+    <span>${description}</span><br><br>
+    <strong>Price:</strong> $${price}
   `;
 } else {
   sessionDetails.innerHTML = "No session selected.";
 }
 
-// WhatsApp redirect
 function continueWhatsApp() {
-  let message = `Hello PsyRCare, my name is ${username}. I would like to book the following session: ${sessionName} (${sessionPrice}$).`;
+  let message =
+    `Hello PsyRCare, my name is ${username}. I would like to book the following session:\n\n` +
+    `Session: ${name}\n` +
+    `Duration: ${duration}\n` +
+    `Price: $${price}`;
+
   let url = "https://wa.me/212722288965?text=" + encodeURIComponent(message);
   window.open(url, "_blank");
 }
 
-// Back to offers
 function goToOffers() {
   window.location.href = "offers.html";
 }
 
-// Conversation / About page
 function goToConversation() {
-  window.location.href = "about.html"; // غيريها إذا أردتِ
+  window.location.href = "about.html";
 }
 </script>
 
 </body>
 </html>
+
+
