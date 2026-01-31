@@ -1,223 +1,202 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Offers</title>
+<title>PsyRCare – Private Conversation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  background: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  padding: 40px 20px;
-  text-align: center;
+  background: #000;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-/* Intro message */
-#introMessage {
-  font-size: 22px;
-  min-height: 60px;
-  margin-top: 120px;
-}
-
-/* After intro */
-#mainSection {
-  display: none;
-}
-
-#chooseText {
-  font-size: 26px;
-  margin-bottom: 10px;
-  font-weight: 300;
-}
-
-#chooseSub {
-  font-size: 15px;
-  opacity: 0.7;
-  margin-bottom: 35px;
-}
-
-/* Offers */
-.offers-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.offer-card {
-  border: 1px solid white;
+.header {
   padding: 18px;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  font-size: 20px;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 70%;
+  margin-bottom: 14px;
+  padding: 12px 16px;
   border-radius: 14px;
-  transition: 0.3s;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.offer-card:hover {
-  transform: scale(1.03);
+.user {
+  background: #fff;
+  color: #000;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
 }
 
-.offer-title {
-  font-size: 17px;
-  margin-bottom: 6px;
+.admin {
+  background: #1a1a1a;
+  color: #fff;
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
 }
 
-.offer-desc {
+.notice {
+  text-align: center;
   font-size: 13px;
-  opacity: 0.8;
-  margin-bottom: 12px;
+  opacity: 0.6;
+  margin-bottom: 8px;
 }
 
-.offer-price {
-  font-size: 18px;
-  margin-bottom: 12px;
+.input-area {
+  border-top: 1px solid #333;
+  padding: 15px;
+  display: flex;
+  gap: 10px;
 }
 
-.book-btn {
-  padding: 8px 22px;
-  border: 1px solid white;
-  background: transparent;
+input {
+  flex: 1;
+  padding: 12px;
+  background: #000;
+  border: 1px solid #444;
   color: white;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: 0.3s;
+  border-radius: 10px;
+  outline: none;
 }
 
-.book-btn:hover {
+button {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
   background: white;
   color: black;
+  transition: 0.3s;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 </style>
 </head>
 
 <body>
 
-<div id="introMessage"></div>
+<div class="header" id="headerTitle">
+  Private Conversation
+</div>
 
-<div id="mainSection">
-  <div id="chooseText">Choose the session that feels right for you</div>
-  <div id="chooseSub">Take your time. This space is yours.</div>
+<div class="chat-box" id="chatBox"></div>
 
-  <div class="offers-container">
+<div class="notice" id="notice"></div>
 
-    <div class="offer-card">
-      <div class="offer-title">Free Discovery Session</div>
-      <div class="offer-desc">A short conversation to explore the platform and ask questions.</div>
-      <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('Free Discovery Session','15 minutes','A short conversation to explore the platform and ask questions.',0)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">30 Minutes Session</div>
-      <div class="offer-desc">A gentle introduction for reflection and open conversation.</div>
-      <div class="offer-price">$5</div>
-      <button class="book-btn" onclick="bookOffer('30 Minutes Session','30 minutes','A gentle introduction for reflection and open conversation.',5)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">1 Hour Session</div>
-      <div class="offer-desc">A focused session for meaningful dialogue and personal insight.</div>
-      <div class="offer-price">$10</div>
-      <button class="book-btn" onclick="bookOffer('1 Hour Session','1 hour','A focused session for meaningful dialogue and personal insight.',10)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">1.5 Hours Session</div>
-      <div class="offer-desc">Extended time for deeper exploration and thoughtful conversation.</div>
-      <div class="offer-price">$15</div>
-      <button class="book-btn" onclick="bookOffer('1.5 Hours Session','1.5 hours','Extended time for deeper exploration and thoughtful conversation.',15)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">2 Hours Session</div>
-      <div class="offer-desc">A longer space for clarity, reflection, and awareness.</div>
-      <div class="offer-price">$20</div>
-      <button class="book-btn" onclick="bookOffer('2 Hours Session','2 hours','A longer space for clarity, reflection, and awareness.',20)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">2.5 Hours Session</div>
-      <div class="offer-desc">Time dedicated to deeper understanding and exploration.</div>
-      <div class="offer-price">$25</div>
-      <button class="book-btn" onclick="bookOffer('2.5 Hours Session','2.5 hours','Time dedicated to deeper understanding and exploration.',25)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">3 Hours Session</div>
-      <div class="offer-desc">A complete session for profound reflection and clarity.</div>
-      <div class="offer-price">$30</div>
-      <button class="book-btn" onclick="bookOffer('3 Hours Session','3 hours','A complete session for profound reflection and clarity.',30)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">3.5 Hours Session</div>
-      <div class="offer-desc">A powerful extended session for personal growth.</div>
-      <div class="offer-price">$35</div>
-      <button class="book-btn" onclick="bookOffer('3.5 Hours Session','3.5 hours','A powerful extended session for personal growth.',35)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">4 Hours Session</div>
-      <div class="offer-desc">Deep exploration of thoughts in a calm environment.</div>
-      <div class="offer-price">$40</div>
-      <button class="book-btn" onclick="bookOffer('4 Hours Session','4 hours','Deep exploration of thoughts in a calm environment.',40)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">4.5 Hours Session</div>
-      <div class="offer-desc">Long-form conversation designed for awareness.</div>
-      <div class="offer-price">$45</div>
-      <button class="book-btn" onclick="bookOffer('4.5 Hours Session','4.5 hours','Long-form conversation designed for awareness.',45)">Book</button>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-title">5 Hours Session</div>
-      <div class="offer-desc">The most complete space for deep reflection.</div>
-      <div class="offer-price">$50</div>
-      <button class="book-btn" onclick="bookOffer('5 Hours Session','5 hours','The most complete space for deep reflection.',50)">Book</button>
-    </div>
-
-  </div>
+<div class="input-area">
+  <input type="text" id="messageInput" placeholder="Write your message..." />
+  <button id="sendBtn">Send</button>
 </div>
 
 <script>
-let username = localStorage.getItem("userName") || "";
+// ===============================
+// USER IDENTIFICATION
+// ===============================
+const userName  = localStorage.getItem("userName")  || "Guest";
+const userEmail = localStorage.getItem("userEmail") || "unknown";
 
-let message =
-  username +
-  "... welcome 🤍\nIf you are looking for clarity, understanding, and a safe space where your voice truly matters — you are in the right place.";
+// Unique keys per user
+const chatKey    = "chat_" + userEmail;
+const sessionKey = "sessionOpen_" + userEmail;
 
-let index = 0;
-let intro = document.getElementById("introMessage");
-let main = document.getElementById("mainSection");
+// ===============================
+// SESSION CONTROL (PER USER)
+// ===============================
+// false = closed | true = open
+let sessionOpen = JSON.parse(localStorage.getItem(sessionKey));
+if (sessionOpen === null) {
+  sessionOpen = false;
+  localStorage.setItem(sessionKey, false);
+}
 
-function typeMessage() {
-  if (index < message.length) {
-    intro.innerHTML += message.charAt(index);
-    index++;
-    setTimeout(typeMessage, 45);
+// ===============================
+// ELEMENTS
+// ===============================
+const chatBox = document.getElementById("chatBox");
+const input   = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+const notice  = document.getElementById("notice");
+const header  = document.getElementById("headerTitle");
+
+header.textContent = "Conversation with " + userName;
+
+// ===============================
+// LOAD MESSAGES
+// ===============================
+let messages = JSON.parse(localStorage.getItem(chatKey)) || [];
+
+function renderMessages() {
+  chatBox.innerHTML = "";
+  messages.forEach(msg => {
+    const div = document.createElement("div");
+    div.className = "message " + msg.type;
+    div.textContent = msg.text;
+    chatBox.appendChild(div);
+  });
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+renderMessages();
+
+// ===============================
+// SESSION STATE
+// ===============================
+function updateSessionUI() {
+  if (!sessionOpen) {
+    sendBtn.disabled = true;
+    input.disabled = true;
+    notice.textContent =
+      "Messaging is available only during your scheduled session.";
   } else {
-    setTimeout(() => {
-      intro.style.display = "none";
-      main.style.display = "block";
-    }, 1300);
+    sendBtn.disabled = false;
+    input.disabled = false;
+    notice.textContent = "";
   }
 }
 
-typeMessage();
+updateSessionUI();
 
-function bookOffer(name, duration, description, price) {
-  localStorage.setItem("offerName", name);
-  localStorage.setItem("offerDuration", duration);
-  localStorage.setItem("offerDescription", description);
-  localStorage.setItem("offerPrice", price);
-  window.location.href = "order.html";
-}
+// ===============================
+// SEND MESSAGE
+// ===============================
+sendBtn.addEventListener("click", () => {
+  const text = input.value.trim();
+  if (!text) return;
+
+  messages.push({ type: "user", text });
+  localStorage.setItem(chatKey, JSON.stringify(messages));
+  input.value = "";
+  renderMessages();
+});
+
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") sendBtn.click();
+});
 </script>
 
 </body>
 </html>
+  
 
-    
-
+ 
