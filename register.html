@@ -129,6 +129,12 @@ continueBtn.addEventListener("click", function() {
   localStorage.setItem("userName", name);
   localStorage.setItem("userEmail", email);
 
+  // حفظ المستخدم في قائمة الإدارة
+let users = JSON.parse(localStorage.getItem("usersList")) || [];
+if (!users.includes(email)) {
+  users.push(email);
+  localStorage.setItem("usersList", JSON.stringify(users));
+}
   // الانتقال إلى صفحة العروض
   window.location.href = "offers.html";
 });
