@@ -2,201 +2,137 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare – Private Conversation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+<title>PsyRCare - Order</title>
 
 <style>
 body {
   margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: 'Playfair Display', serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.header {
-  padding: 18px;
-  border-bottom: 1px solid #333;
-  text-align: center;
-  font-size: 20px;
-}
-
-.chat-box {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.message {
-  max-width: 70%;
-  margin-bottom: 14px;
-  padding: 12px 16px;
-  border-radius: 14px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.user {
-  background: #fff;
-  color: #000;
-  margin-left: auto;
-  border-bottom-right-radius: 4px;
-}
-
-.admin {
-  background: #1a1a1a;
-  color: #fff;
-  margin-right: auto;
-  border-bottom-left-radius: 4px;
-}
-
-.notice {
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
-  margin-bottom: 8px;
-}
-
-.input-area {
-  border-top: 1px solid #333;
-  padding: 15px;
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
-  padding: 12px;
-  background: #000;
-  border: 1px solid #444;
+  background: black;
   color: white;
-  border-radius: 10px;
-  outline: none;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 450px;
+  text-align: center;
+  border: 1px solid #333;
+  padding: 35px 30px;
+  border-radius: 14px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.details {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.details span {
+  opacity: 0.7;
+}
+
+.note {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 button {
-  padding: 12px 22px;
-  border-radius: 10px;
-  border: none;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 30px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
   cursor: pointer;
-  background: white;
-  color: black;
   transition: 0.3s;
+  font-size: 14px;
 }
 
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+button:hover {
+  background: white;
+  color: black;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header" id="headerTitle">
-  Private Conversation
-</div>
+<div class="container">
 
-<div class="chat-box" id="chatBox"></div>
+  <h1>Your session details</h1>
 
-<div class="notice" id="notice"></div>
+  <div class="details" id="sessionDetails">
+    Loading...
+  </div>
 
-<div class="input-area">
-  <input type="text" id="messageInput" placeholder="Write your message..." />
-  <button id="sendBtn">Send</button>
+  <div class="note">
+    Payment and session scheduling will be completed via WhatsApp.<br>
+    You will receive a reply within 24 hours.
+  </div>
+
+  <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
+  <button onclick="goToOffers()">Back to offers</button>
+  <button onclick="window.location.href='chat.html'">
+  Conversation Page
+</button>
+
 </div>
 
 <script>
-// ===============================
-// USER IDENTIFICATION
-// ===============================
-const userName  = localStorage.getItem("userName")  || "Guest";
-const userEmail = localStorage.getItem("userEmail") || "unknown";
+const name = localStorage.getItem("offerName");
+const duration = localStorage.getItem("offerDuration");
+const description = localStorage.getItem("offerDescription");
+const price = localStorage.getItem("offerPrice");
+const username = localStorage.getItem("username");
 
-// Unique keys per user
-const chatKey    = "chat_" + userEmail;
-const sessionKey = "sessionOpen_" + userEmail;
+const sessionDetails = document.getElementById("sessionDetails");
 
-// ===============================
-// SESSION CONTROL (PER USER)
-// ===============================
-// false = closed | true = open
-let sessionOpen = JSON.parse(localStorage.getItem(sessionKey));
-if (sessionOpen === null) {
-  sessionOpen = false;
-  localStorage.setItem(sessionKey, false);
+if (name && duration && description && price !== null) {
+  sessionDetails.innerHTML = `
+    <strong>Session:</strong> ${name}<br>
+    <strong>Duration:</strong> ${duration}<br>
+    <strong>Description:</strong><br>
+    <span>${description}</span><br><br>
+    <strong>Price:</strong> $${price}
+  `;
+} else {
+  sessionDetails.innerHTML = "No session selected.";
 }
 
-// ===============================
-// ELEMENTS
-// ===============================
-const chatBox = document.getElementById("chatBox");
-const input   = document.getElementById("messageInput");
-const sendBtn = document.getElementById("sendBtn");
-const notice  = document.getElementById("notice");
-const header  = document.getElementById("headerTitle");
+function continueWhatsApp() {
+  let message =
+    `Hello PsyRCare, my name is ${username}. I would like to book the following session:\n\n` +
+    `Session: ${name}\n` +
+    `Duration: ${duration}\n` +
+    `Price: $${price}`;
 
-header.textContent = "Conversation with " + userName;
-
-// ===============================
-// LOAD MESSAGES
-// ===============================
-let messages = JSON.parse(localStorage.getItem(chatKey)) || [];
-
-function renderMessages() {
-  chatBox.innerHTML = "";
-  messages.forEach(msg => {
-    const div = document.createElement("div");
-    div.className = "message " + msg.type;
-    div.textContent = msg.text;
-    chatBox.appendChild(div);
-  });
-  chatBox.scrollTop = chatBox.scrollHeight;
+  let url = "https://wa.me/212722288965?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
 }
 
-renderMessages();
-
-// ===============================
-// SESSION STATE
-// ===============================
-function updateSessionUI() {
-  if (!sessionOpen) {
-    sendBtn.disabled = true;
-    input.disabled = true;
-    notice.textContent =
-      "Messaging is available only during your scheduled session.";
-  } else {
-    sendBtn.disabled = false;
-    input.disabled = false;
-    notice.textContent = "";
-  }
+function goToOffers() {
+  window.location.href = "offers.html";
 }
 
-updateSessionUI();
-
-// ===============================
-// SEND MESSAGE
-// ===============================
-sendBtn.addEventListener("click", () => {
-  const text = input.value.trim();
-  if (!text) return;
-
-  messages.push({ type: "user", text });
-  localStorage.setItem(chatKey, JSON.stringify(messages));
-  input.value = "";
-  renderMessages();
-});
-
-input.addEventListener("keydown", e => {
-  if (e.key === "Enter") sendBtn.click();
-});
+function goToConversation() {
+  window.location.href = "about.html";
+}
 </script>
 
 </body>
 </html>
-  
 
- 
