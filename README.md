@@ -182,7 +182,7 @@ body {
 </div>
 
 <script>
-let username = localStorage.getItem("userName") || "You";
+let username = localStorage.getItem("userName") || "";
 
 let message =
   username +
@@ -218,6 +218,12 @@ function bookOffer(name, duration, description, price) {
 
 </body>
 </html>
+
+
+
+
+
+
 
  
  
