@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="google-site-verification" content="Lh7kgs0uNARLIjz_tQC9flE5l4sIPxFGYGgFeJ20SXI" />
+
+  <meta name="description" content="A calm and safe space for emotional support and guided self-reflection sessions. PsyRCare offers respectful conversations designed to help you feel heard and supported.">
+  
   <title>PsyRCare</title>
   <style>
     body {
@@ -77,7 +80,3 @@
 
 </body>
 </html>
- 
-
-
- 
