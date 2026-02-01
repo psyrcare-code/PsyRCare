@@ -49,10 +49,15 @@ h1 {
   text-align: center;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 button {
   width: 100%;
   padding: 12px;
-  margin: 8px 0;
   border-radius: 30px;
   border: 1px solid white;
   background: transparent;
@@ -80,12 +85,15 @@ button:hover {
   </div>
 
   <div class="note">
-    Payment and session scheduling will be completed via WhatsApp.<br>
+    Payment and session scheduling will be completed via WhatsApp or Instagram.<br>
     You will receive a reply within 24 hours.
   </div>
 
-  <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
-  <button onclick="goToOffers()">Back to offers</button>
+  <div class="buttons">
+    <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
+    <button onclick="continueInstagram()">Continue on Instagram</button>
+    <button onclick="goToOffers()">Back to offers</button>
+  </div>
 
 </div>
 
@@ -121,16 +129,14 @@ function continueWhatsApp() {
   window.open(url, "_blank");
 }
 
-function goToOffers() {
-  window.location.href = "offers.html";
+function continueInstagram() {
+  window.open("https://www.instagram.com/self_love20127/", "_blank");
 }
 
-function goToConversation() {
-  window.location.href = "about.html";
+function goToOffers() {
+  window.location.href = "offers.html";
 }
 </script>
 
 </body>
 </html>
-
-
