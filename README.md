@@ -2,99 +2,64 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PsyRCare - Admin</title>
+<title>PsyRCare - Order</title>
 
 <style>
 body {
   margin: 0;
-  background: #0b0b0b;
+  background: black;
   color: white;
   font-family: Arial, sans-serif;
-  display: flex;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Users list */
-.users {
-  width: 30%;
-  border-right: 1px solid #333;
-  padding: 20px;
-  overflow-y: auto;
+.container {
+  width: 450px;
+  text-align: center;
+  border: 1px solid #333;
+  padding: 35px 30px;
+  border-radius: 14px;
 }
 
-.users h2 {
+h1 {
+  font-size: 26px;
   font-weight: 300;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
-.user {
-  padding: 10px;
-  border-bottom: 1px solid #222;
-  cursor: pointer;
-  font-size: 14px;
+.details {
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  opacity: 0.95;
 }
 
-.user:hover {
-  background: #1a1a1a;
+.details span {
+  opacity: 0.7;
 }
 
-/* Chat */
-.chat {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-header {
-  padding: 15px;
-  border-bottom: 1px solid #333;
-  font-size: 14px;
-  opacity: 0.8;
-}
-
-.messages {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.msg {
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.msg.user {
-  color: #bbb;
-}
-
-.msg.admin {
-  color: white;
-}
-
-/* Controls */
-.controls {
-  border-top: 1px solid #333;
-  padding: 15px;
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 6px;
+.note {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
 button {
-  padding: 10px 18px;
-  background: transparent;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 30px;
   border: 1px solid white;
+  background: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 20px;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
 button:hover {
@@ -106,91 +71,66 @@ button:hover {
 
 <body>
 
-<div class="users">
-  <h2>Users</h2>
-  <div id="usersList"></div>
-</div>
+<div class="container">
 
-<div class="chat">
-  <div class="chat-header" id="chatHeader">
-    Select a user to view conversation
+  <h1>Your session details</h1>
+
+  <div class="details" id="sessionDetails">
+    Loading...
   </div>
 
-  <div class="messages" id="messages"></div>
-
-  <div class="controls">
-    <input type="text" id="adminMsg" placeholder="Write a message..." disabled>
-    <button onclick="sendAdminMsg()" disabled id="sendBtn">Send</button>
-    <button onclick="toggleSession()" id="toggleBtn" disabled>Open Session</button>
+  <div class="note">
+    Payment and session scheduling will be completed via WhatsApp.<br>
+    You will receive a reply within 24 hours.
   </div>
+
+  <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
+  <button onclick="goToOffers()">Back to offers</button>
+
 </div>
 
 <script>
-let users = JSON.parse(localStorage.getItem("usersList")) || [];
-let currentUser = null;
+const name = localStorage.getItem("offerName");
+const duration = localStorage.getItem("offerDuration");
+const description = localStorage.getItem("offerDescription");
+const price = localStorage.getItem("offerPrice");
+const username = localStorage.getItem("username");
 
-const usersList = document.getElementById("usersList");
-const messagesDiv = document.getElementById("messages");
-const chatHeader = document.getElementById("chatHeader");
-const adminMsg = document.getElementById("adminMsg");
-const sendBtn = document.getElementById("sendBtn");
-const toggleBtn = document.getElementById("toggleBtn");
+const sessionDetails = document.getElementById("sessionDetails");
 
-// عرض المستخدمين
-users.forEach(email => {
-  let div = document.createElement("div");
-  div.className = "user";
-  div.textContent = email;
-  div.onclick = () => openChat(email);
-  usersList.appendChild(div);
-});
-
-function openChat(email) {
-  currentUser = email;
-  chatHeader.textContent = "Chat with " + email;
-  adminMsg.disabled = false;
-  sendBtn.disabled = false;
-  toggleBtn.disabled = false;
-  loadMessages();
-  updateToggleText();
+if (name && duration && description && price !== null) {
+  sessionDetails.innerHTML = `
+    <strong>Session:</strong> ${name}<br>
+    <strong>Duration:</strong> ${duration}<br>
+    <strong>Description:</strong><br>
+    <span>${description}</span><br><br>
+    <strong>Price:</strong> $${price}
+  `;
+} else {
+  sessionDetails.innerHTML = "No session selected.";
 }
 
-function loadMessages() {
-  messagesDiv.innerHTML = "";
-  let msgs = JSON.parse(localStorage.getItem("chat_" + currentUser)) || [];
-  msgs.forEach(m => {
-    let div = document.createElement("div");
-    div.className = "msg " + m.from;
-    div.textContent = m.text;
-    messagesDiv.appendChild(div);
-  });
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+function continueWhatsApp() {
+  let message =
+    `Hello PsyRCare, my name is ${username}. I would like to book the following session:\n\n` +
+    `Session: ${name}\n` +
+    `Duration: ${duration}\n` +
+    `Price: $${price}`;
+
+  let url = "https://wa.me/212722288965?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
 }
 
-function sendAdminMsg() {
-  if (!adminMsg.value.trim()) return;
-
-  let msgs = JSON.parse(localStorage.getItem("chat_" + currentUser)) || [];
-  msgs.push({ from: "admin", text: adminMsg.value });
-  localStorage.setItem("chat_" + currentUser, JSON.stringify(msgs));
-
-  adminMsg.value = "";
-  loadMessages();
+function goToOffers() {
+  window.location.href = "offers.html";
 }
 
-function toggleSession() {
-  let key = "sessionOpen_" + currentUser;
-  let isOpen = localStorage.getItem(key) === "true";
-  localStorage.setItem(key, (!isOpen).toString());
-  updateToggleText();
-}
-
-function updateToggleText() {
-  let isOpen = localStorage.getItem("sessionOpen_" + currentUser) === "true";
-  toggleBtn.textContent = isOpen ? "Close Session" : "Open Session";
+function goToConversation() {
+  window.location.href = "about.html";
 }
 </script>
 
 </body>
 </html>
+
 
