@@ -1,143 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>PsyRCare - Order</title>
+  <meta charset="UTF-8">
+  <meta name="google-site-verification" content="Lh7kgs0uNARLIjz_tQC9flE5l4sIPxFGYGgFeJ20SXI" />
 
-<style>
-body {
-  margin: 0;
-  background: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  <meta name="description" content="A calm and safe space for emotional support and guided self-reflection sessions. PsyRCare offers respectful conversations designed to help you feel heard and supported.">
+  
+  <title>PsyRCare</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+    }
 
-.container {
-  width: 450px;
-  text-align: center;
-  border: 1px solid #333;
-  padding: 35px 30px;
-  border-radius: 14px;
-}
+    #time {
+      font-size: 90px;
+      letter-spacing: 6px;
+      margin-bottom: 40px;
+    }
 
-h1 {
-  font-size: 26px;
-  font-weight: 300;
-  margin-bottom: 25px;
-}
+    #arrow {
+      font-size: 40px;
+      opacity: 0;
+      transition: opacity 1s;
+    }
 
-.details {
-  text-align: left;
-  font-size: 15px;
-  line-height: 1.8;
-  margin-bottom: 30px;
-  opacity: 0.95;
-}
-
-.details span {
-  opacity: 0.7;
-}
-
-.note {
-  font-size: 13px;
-  opacity: 0.7;
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 30px;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 14px;
-}
-
-button:hover {
-  background: white;
-  color: black;
-}
-</style>
+    #arrow.show {
+      opacity: 1;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <div id="time">22:21</div>
+  <div id="arrow">↓</div>
 
-  <h1>Your session details</h1>
+  <audio id="flatline" src="flatline.mp3"></audio>
+  <audio id="heartbeat" src="heartbeat.mp3" loop></audio>
 
-  <div class="details" id="sessionDetails">
-    Loading...
-  </div>
+  <script>
+    let started = false;
 
-  <div class="note">
-    Payment and session scheduling will be completed via WhatsApp or Instagram.<br>
-    You will receive a reply within 24 hours.
-  </div>
+    document.body.addEventListener("click", () => {
+      if (started) return;
+      started = true;
 
-  <div class="buttons">
-    <button onclick="continueWhatsApp()">Continue on WhatsApp</button>
-    <button onclick="continueInstagram()">Continue on Instagram</button>
-    <button onclick="goToOffers()">Back to offers</button>
-  </div>
+      const flatline = document.getElementById("flatline");
+      const heartbeat = document.getElementById("heartbeat");
+      const time = document.getElementById("time");
+      const arrow = document.getElementById("arrow");
 
-</div>
+      flatline.play();
 
-<script>
-const name = localStorage.getItem("offerName");
-const duration = localStorage.getItem("offerDuration");
-const description = localStorage.getItem("offerDescription");
-const price = localStorage.getItem("offerPrice");
-const username = localStorage.getItem("username");
+      setTimeout(() => {
+        time.innerText = "22:22";
+        flatline.pause();
+        heartbeat.play();
+        arrow.classList.add("show");
+      }, 3000);
 
-const sessionDetails = document.getElementById("sessionDetails");
-
-if (name && duration && description && price !== null) {
-  sessionDetails.innerHTML = `
-    <strong>Session:</strong> ${name}<br>
-    <strong>Duration:</strong> ${duration}<br>
-    <strong>Description:</strong><br>
-    <span>${description}</span><br><br>
-    <strong>Price:</strong> $${price}
-  `;
-} else {
-  sessionDetails.innerHTML = "No session selected.";
-}
-
-function continueWhatsApp() {
-  let message =
-    `Hello PsyRCare, my name is ${username}. I would like to book the following session:\n\n` +
-    `Session: ${name}\n` +
-    `Duration: ${duration}\n` +
-    `Price: $${price}`;
-
-  let url = "https://wa.me/212722288965?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-}
-
-function continueInstagram() {
-  window.open("https://www.instagram.com/psyrcare/", "_blank");
-}
-
-function goToOffers() {
-  window.location.href = "offers.html";
-}
-</script>
+      arrow.addEventListener("click", (e) => {
+        e.stopPropagation();
+        heartbeat.pause();
+        document.body.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 1000);
+      });
+    });
+  </script>
 
 </body>
 </html>
- 
+
+
