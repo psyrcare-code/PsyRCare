@@ -96,8 +96,8 @@ body {
 <div id="introMessage"></div>
 
 <div id="mainSection">
-  <div id="chooseText">Choose the session that feels right for you
-  All offers are free until the end of February. </div>
+  <div id="chooseText">Choose the session that feels right for you,
+  all offers are free until the end of February. </div>
   <div id="chooseSub">Take your time. This space is yours.</div>
 
   <div class="offers-container">
@@ -113,70 +113,70 @@ body {
       <div class="offer-title">30 Minutes Session</div>
       <div class="offer-desc">A gentle introduction for reflection and open conversation.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('30 Minutes Session','30 minutes','A gentle introduction for reflection and open conversation.',5)">Book</button>
+      <button class="book-btn" onclick="bookOffer('30 Minutes Session','30 minutes','A gentle introduction for reflection and open conversation.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">1 Hour Session</div>
       <div class="offer-desc">A focused session for meaningful dialogue and personal insight.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('1 Hour Session','1 hour','A focused session for meaningful dialogue and personal insight.',10)">Book</button>
+      <button class="book-btn" onclick="bookOffer('1 Hour Session','1 hour','A focused session for meaningful dialogue and personal insight.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">1.5 Hours Session</div>
       <div class="offer-desc">Extended time for deeper exploration and thoughtful conversation.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('1.5 Hours Session','1.5 hours','Extended time for deeper exploration and thoughtful conversation.',15)">Book</button>
+      <button class="book-btn" onclick="bookOffer('1.5 Hours Session','1.5 hours','Extended time for deeper exploration and thoughtful conversation.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">2 Hours Session</div>
       <div class="offer-desc">A longer space for clarity, reflection, and awareness.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('2 Hours Session','2 hours','A longer space for clarity, reflection, and awareness.',20)">Book</button>
+      <button class="book-btn" onclick="bookOffer('2 Hours Session','2 hours','A longer space for clarity, reflection, and awareness.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">2.5 Hours Session</div>
       <div class="offer-desc">Time dedicated to deeper understanding and exploration.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('2.5 Hours Session','2.5 hours','Time dedicated to deeper understanding and exploration.',25)">Book</button>
+      <button class="book-btn" onclick="bookOffer('2.5 Hours Session','2.5 hours','Time dedicated to deeper understanding and exploration.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">3 Hours Session</div>
       <div class="offer-desc">A complete session for profound reflection and clarity.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('3 Hours Session','3 hours','A complete session for profound reflection and clarity.',30)">Book</button>
+      <button class="book-btn" onclick="bookOffer('3 Hours Session','3 hours','A complete session for profound reflection and clarity.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">3.5 Hours Session</div>
       <div class="offer-desc">A powerful extended session for personal growth.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('3.5 Hours Session','3.5 hours','A powerful extended session for personal growth.',35)">Book</button>
+      <button class="book-btn" onclick="bookOffer('3.5 Hours Session','3.5 hours','A powerful extended session for personal growth.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">4 Hours Session</div>
       <div class="offer-desc">Deep exploration of thoughts in a calm environment.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('4 Hours Session','4 hours','Deep exploration of thoughts in a calm environment.',40)">Book</button>
+      <button class="book-btn" onclick="bookOffer('4 Hours Session','4 hours','Deep exploration of thoughts in a calm environment.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">4.5 Hours Session</div>
       <div class="offer-desc">Long-form conversation designed for awareness.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('4.5 Hours Session','4.5 hours','Long-form conversation designed for awareness.',45)">Book</button>
+      <button class="book-btn" onclick="bookOffer('4.5 Hours Session','4.5 hours','Long-form conversation designed for awareness.',0)">Book</button>
     </div>
 
     <div class="offer-card">
       <div class="offer-title">5 Hours Session</div>
       <div class="offer-desc">The most complete space for deep reflection.</div>
       <div class="offer-price">Free</div>
-      <button class="book-btn" onclick="bookOffer('5 Hours Session','5 hours','The most complete space for deep reflection.',50)">Book</button>
+      <button class="book-btn" onclick="bookOffer('5 Hours Session','5 hours','The most complete space for deep reflection.',0)">Book</button>
     </div>
 
   </div>
